@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DrawPool.Controls
+namespace DrawPool
 {
     /// <summary>
-    /// Interaction logic for OptionsViewControl.xaml
+    /// Interaction logic for InfoControl.xaml
     /// </summary>
-    public partial class OptionsViewControl : UserControl
+    public partial class InfoControl : UserControl
     {
-        public OptionsViewControl()
+        public InfoControl()
         {
             InitializeComponent();
         }

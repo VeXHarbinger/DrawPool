@@ -1,27 +1,25 @@
 ﻿namespace DrawPool
 {
+    using DrawPool.Models;
+    using Hearthstone_Deck_Tracker.API;
     using MahApps.Metro.Controls;
     using System;
     using System.Windows;
-    using Hearthstone_Deck_Tracker.API;
     using Settings = DrawPool.Properties.Settings;
-    using Core = Hearthstone_Deck_Tracker.API.Core;
-    using System.ComponentModel;
-    using DrawPool.Models;
 
     /// <summary>
     /// Logic related to the DrawPoolWindow data processing
     /// </summary>
-    /// <seealso cref="MahApps.Metro.Controls.MetroWindow"/>
-    /// <seealso cref="System.Windows.Controls.UserControl"/>
-    /// <seealso cref="System.Windows.Markup.IComponentConnector"/>
+    /// <seealso cref="MahApps.Metro.Controls.MetroWindow" />
+    /// <seealso cref="System.Windows.Controls.UserControl" />
+    /// <seealso cref="System.Windows.Markup.IComponentConnector" />
     public partial class DrawPoolWindow : MetroWindow
     {
         /// <summary>
         /// Gets or sets the current display view.
         /// </summary>
         /// <value>The current display view.</value>
-        private static ViewModes currentView;
+        private ViewModes currentView;
 
         /// <summary>
         /// Gets or sets the currently displayed view.
@@ -39,28 +37,30 @@
         }
 
         /// <summary>
-        /// Initializes the window.
+        /// Called when [mouse off].
         /// </summary>
-        public void Initialize()
+        private void OnMouseOff()
         {
-            // Core.Game.PlayerMinionCount Helper.OptionsMain. GameEvents.OnPlayerCreateInDeck
-            // GameEvents.OnPlayerGet GameEvents.OnTurnStart
-            InitializeOpts();
-            InitializeByCardModules();
+            Visibility = Visibility.Collapsed;
+        }
 
-            // Game Triggers
-            GameEvents.OnGameStart.Add(Reset);
-            GameEvents.OnGameEnd.Add(Reset);
-            // User Triggers
-            GameEvents.OnMouseOverOff.Add(OnMouseOff);
-
-            Core.Game.Player.PropertyChanged += DeckCountChanged;
-            Core.Game.Player.PropertyChanged += (sender, e) =>
+        /// <summary>
+        /// Helper event for the Display control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        protected void Display_Helper(object sender, EventArgs e)
+        {
+            CurtainCall cc = (CurtainCall)sender;
+            if (cc != null && cc.ShouldShow)
             {
-                if (e.PropertyName == "Deck" || e.PropertyName == "DeckCount")
-                {
-                }
-            };
+                CurrentView = cc.CallingView;
+                Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Visibility = Visibility.Collapsed;
+            }
         }
 
         /// <summary>
@@ -89,20 +89,57 @@
         }
 
         /// <summary>
+        /// Initializes the window.
+        /// </summary>
+        public void InitializeDrawPool()
+        {
+            InitializeWinOpts();
+            InitializeOpts();
+            InitializeByCardModules();
+
+            // Game Triggers
+            GameEvents.OnGameStart.Add(Reset);
+            GameEvents.OnGameEnd.Add(Reset);
+            // User Triggers
+            GameEvents.OnMouseOverOff.Add(OnMouseOff);
+        }
+
+        /// <summary>
+        /// Initializes the window options, to resolve control transparency.
+        /// </summary>
+        private void InitializeWinOpts()
+        {
+
+            this.WindowStyle = WindowStyle.None;
+            this.AllowsTransparency = true;
+            this.Background = System.Windows.Media.Brushes.Transparent;
+        }
+
+        /// <summary>
         /// Initializes the Options.
         /// </summary>
         public void InitializeOpts()
         {
-            currentView = ViewModes.Options;
-            var uc = (UserOptionsControl)DisplayBox.FindChild<System.Windows.Controls.UserControl>(currentView.ToString());
+            var uc = (UserOptionsControl)DisplayBox.FindChild<System.Windows.Controls.UserControl>(ViewModes.Options.ToString());
             if (uc != null)
-                uc.WinPositionButtonClick += new EventHandler(WinPositionMode);
-
-            uc.btnDone.Click += (sender, args) =>
             {
-                Settings.Default.Save();
-                Display_Helper(new CurtainCall(), args);
-            };
+                uc.btnToggle.Checked += (sender, args) =>
+                {
+                    uc.btnToggle.Content = "Lock";
+                    IsWindowDraggable = true;
+                };
+                uc.btnToggle.Unchecked += (sender, args) =>
+                {
+                    uc.btnToggle.Content = "Unlock";
+                    IsWindowDraggable = false;
+                };
+                uc.btnDone.Click += (sender, args) =>
+                {
+                    uc.btnToggle.IsChecked = false;
+                    uc.Visibility = Visibility.Collapsed;
+                    Visibility = Visibility.Collapsed;
+                };
+            }
         }
 
         /// <summary>
@@ -110,7 +147,7 @@
         /// </summary>
         public void Reset()
         {
-            // ToDo : see how this loop needs to evolve with mechanics
+            // ToDo : see how this loop needs to evolve with mechanics for recruit
             foreach (var dc in DisplayBox.Children)
             {
                 if (dc is IDraw)
@@ -118,48 +155,6 @@
                     ((IDraw)dc).Reset();
                 }
             }
-            Visibility = Visibility.Collapsed;
-        }
-
-        /// <summary>
-        /// Helper event for the Display control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        protected void Display_Helper(object sender, EventArgs e)
-        {
-            CurtainCall cc = (CurtainCall)sender;
-
-            if (cc.ShouldShow)
-            {
-                CurrentView = cc.CallingView;
-                Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Visibility = Visibility.Collapsed;
-            }
-        }
-
-        /// <summary>
-        /// Deck count changed.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">
-        /// The <see cref="PropertyChangedEventArgs"/> instance containing the event data.
-        /// </param>
-        private void DeckCountChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "Deck" || e.PropertyName == "DeckCount")
-            {
-            }
-        }
-
-        /// <summary>
-        /// Called when [mouse off].
-        /// </summary>
-        private void OnMouseOff()
-        {
             Visibility = Visibility.Collapsed;
         }
     }

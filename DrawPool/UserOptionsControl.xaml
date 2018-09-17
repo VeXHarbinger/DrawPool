@@ -15,14 +15,12 @@
     Padding="0"
     d:DesignWidth="200"
     Background="Transparent"
-    FontStretch="Expanded"
     Grid.IsSharedSizeScope="True"
     TextOptions.TextFormattingMode="Display"
     mc:Ignorable="d">
     <UserControl.Resources>
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontStretch" Value="Expanded" />
             <Setter Property="FontFamily" Value="Book Antiqua" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="MinWidth" Value="100" />
@@ -33,7 +31,7 @@
         </Style>
         <Style TargetType="CheckBox">
             <Setter Property="Grid.Column" Value="1" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <Style TargetType="RowDefinition">
@@ -48,8 +46,11 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition Height="2*" />
             <RowDefinition />
+            <RowDefinition Height="2*" />
             <RowDefinition />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition Name="LastRow" Height="2*" />
         </Grid.RowDefinitions>
@@ -57,36 +58,62 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Content="Piper" />
+        <Label
+            Grid.Row="0"
+            Content="Piper"
+            Foreground="White" />
         <CheckBox
             Grid.Row="0"
             IsChecked="{Binding Source={x:Static props:Settings.Default}, Path=IsPiperEnabled, IsAsync=True}"
             ToolTip="Enable the Witchwood Piper Draw Display" />
-        <Label Grid.Row="1" Content="Minstrel" />
+        <Label
+            Grid.Row="1"
+            Content="Minstrel"
+            Foreground="White" />
         <CheckBox
             Grid.Row="1"
+            HorizontalAlignment="Center"
             IsChecked="{Binding Source={x:Static props:Settings.Default}, Path=IsMinstrelEnabled, IsAsync=True}"
             ToolTip="Enable the Elven Minstrel Draw Display" />
         <Label
             x:Name="lblPosition"
             Grid.Row="3"
-            Content="Position" />
+            Content="Position"
+            Foreground="White" />
         <ToggleButton
+            Name="btnToggle"
             Grid.Row="3"
             Grid.Column="1"
             Margin="6,2"
             Padding="4,2"
             Background="#FF0F4174"
-            Click="WinPosition_Click"
             Content="Unlock"
             FontStretch="Expanded"
             Grid.IsSharedSizeScope="True"
             IsChecked="False"
             ToolTip="Allows you to move the window, then lock it into place" />
+        <Label
+            x:Name="lblOpacity"
+            Grid.Row="5"
+            Content="Opacity"
+            Foreground="White" />
+        <Slider
+            Grid.Row="6"
+            Grid.ColumnSpan="2"
+            Margin="8,4"
+            IsMoveToPointEnabled="True"
+            IsSnapToTickEnabled="True"
+            Maximum="1.0"
+            Minimum=".1"
+            TickFrequency=".10"
+            TickPlacement="BottomRight"
+            Ticks="0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0"
+            ToolTip="Sets the Drawpool window opacity"
+            Value="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=TwoWay}" />
 
         <Button
             Name="btnDone"
-            Grid.Row="5"
+            Grid.Row="9"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Width="100"

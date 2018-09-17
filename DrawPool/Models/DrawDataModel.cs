@@ -1,31 +1,31 @@
-﻿namespace DrawPool.Models
+﻿namespace DrawPool
 {
-    using MahApps.Metro.Controls;
     using System;
-    using System.Windows;
-    using System.Windows.Controls;
-    using Hearthstone_Deck_Tracker.Controls;
     using System.Collections.Generic;
     using System.Linq;
     using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
-    using Core = Hearthstone_Deck_Tracker.API.Core;
-    using Helper = Hearthstone_Deck_Tracker.Helper;
-    using Hearthstone_Deck_Tracker;
-    using Hearthstone_Deck_Tracker.API;
-    using static Hearthstone_Deck_Tracker.Windows.MessageDialogs;
 
-    public class CurtainCall
+    /// <summary>
+    /// Draw Data Model
+    /// </summary>
+    public class DrawDataModel
     {
         /// <summary>
-        /// Gets or sets the calling view, that is sending the data.
+        /// Gets or sets the <see cref="Card"/> list.
         /// </summary>
-        /// <value>The calling view.</value>
-        public ViewModes CallingView { get; set; }
+        /// <value>The <see cref="Card"/> list.</value>
+        public List<Card> CardList { get; set; } = new List<Card>();
 
         /// <summary>
-        /// Gets or sets a value indicating whether [should show] the window or hide it.
+        /// Gets or sets the deck information related to related minions.
         /// </summary>
-        /// <value><c>true</c> if [should show]; the window otherwise, <c>false</c> hide it.</value>
-        public bool ShouldShow { get; set; } = false;
+        /// <value>The deck information related to related minions.</value>
+        public string DeckData { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the statistical data on draw odds.
+        /// </summary>
+        /// <value>The statistical data on draw odds.</value>
+        public string StatisticalData { get; set; } = string.Empty;
     }
 }

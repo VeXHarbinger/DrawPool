@@ -1,17 +1,15 @@
 ﻿namespace DrawPool
 {
     using Hearthstone_Deck_Tracker.Plugins;
-    using MahApps.Metro.Controls;
     using System;
     using System.Reflection;
     using System.Windows.Controls;
     using Settings = DrawPool.Properties.Settings;
-    using Hearthstone_Deck_Tracker.API;
 
     /// <summary>
     /// The plug-in Instance
     /// </summary>
-    /// <seealso cref="Hearthstone_Deck_Tracker.Plugins.IPlugin"/>
+    /// <seealso cref="Hearthstone_Deck_Tracker.Plugins.IPlugin" />
     public class DrawPoolPlugin : IPlugin
     {
         /// <summary>
@@ -56,6 +54,41 @@
         public Version Version => Assembly.GetExecutingAssembly().GetName().Version;
 
         /// <summary>
+        /// Adds the menu item.
+        /// </summary>
+        private void AddMenuItem()
+        {
+            this.MenuItem = new MenuItem()
+            {
+                Header = "Drawpool"
+            };
+
+            this.MenuItem.Click += (sender, args) =>
+            {
+                OnButtonPress();
+            };
+        }
+
+        /// <summary>
+        /// Checks for default settings, or applies them if missing.
+        /// </summary>
+        protected void CheckForDefaultSettings()
+        {
+            if (Settings.Default == null)
+            {
+                Settings.Default.IsMinstrelEnabled = true;
+                Settings.Default.IsPiperEnabled = true;
+                Settings.Default.Scale = 100;
+                Settings.Default.Opacity = 1.00;
+                Settings.Default.Top = 400;
+                Settings.Default.Left = 300;
+                Settings.Default.Save();
+            }
+            // Make Sure we save changes
+            Settings.Default.PropertyChanged += (sender, e) => Settings.Default.Save();
+        }
+
+        /// <summary>
         /// Called when [button press].
         /// </summary>
         public void OnButtonPress()
@@ -70,6 +103,11 @@
         public void OnLoad()
         {
             win = new DrawPoolWindow();
+            //win.Initialized += (sender, e) =>
+            //{
+            //    win.InitializeDrawPool();
+            //};
+            win.InitializeDrawPool();
             AddMenuItem();
         }
 
@@ -86,42 +124,6 @@
         /// </summary>
         public void OnUpdate()
         {
-        }
-
-        /// <summary>
-        /// Checks for default settings, or applies them if missing.
-        /// </summary>
-        protected void CheckForDefaultSettings()
-        {
-            if (Settings.Default == null)
-            {
-                Settings.Default.IsMinstrelEnabled = true;
-                Settings.Default.IsPiperEnabled = true;
-                Settings.Default.Scale = 100;
-                Settings.Default.Opacity = 100;
-                Settings.Default.Top = 400;
-                Settings.Default.Left = 300;
-                Settings.Default.Save();
-            }
-            // Make Sure we save changes
-            Settings.Default.PropertyChanged += (sender, e) => Settings.Default.Save();
-        }
-
-        /// <summary>
-        /// Adds the menu item.
-        /// </summary>
-        private void AddMenuItem()
-        {
-            this.MenuItem = new MenuItem()
-            {
-                Header = "Drawpool"
-            };
-
-            this.MenuItem.Click += (sender, args) =>
-            {
-                win.CurrentView = DrawPool.ViewModes.Options;
-                win.Show();
-            };
         }
     }
 }
