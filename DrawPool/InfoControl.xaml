@@ -18,7 +18,10 @@
     TextOptions.TextFormattingMode="Display"
     mc:Ignorable="d">
     <UserControl.Background>
-        <SolidColorBrush Opacity="0.8" Color="Gray" />
+        <SolidColorBrush Opacity="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=OneWay}" Color="Gray" />
     </UserControl.Background>
-    <Grid />
+    <StackPanel>
+        <Label Content="Information" />
+        <Label Content="Version 0.0" />
+    </StackPanel>
 </UserControl>

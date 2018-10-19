@@ -13,12 +13,13 @@
     xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes;assembly=HearthstoneDeckTracker"
     Title="Drawpool"
     MinWidth="200"
-    MinHeight="50"
+    MinHeight="200"
+    MaxWidth="300"
     Padding="0"
     AutomationProperties.Name="Drawpool"
     BorderThickness="1"
     Focusable="True"
-    FontFamily="Khmer UI"
+    FontFamily="Segoe UI Semibold"
     Foreground="White"
     Grid.IsSharedSizeScope="True"
     IsCloseButtonEnabled="False"
@@ -27,7 +28,7 @@
     IsWindowDraggable="False"
     Left="{Binding Source={x:Static props:Settings.Default}, Path=Left, Mode=TwoWay}"
     LeftWindowCommandsOverlayBehavior="HiddenTitleBar"
-    Opacity="0.85"
+    Opacity="1.00"
     ResizeMode="NoResize"
     RightWindowCommandsOverlayBehavior="Never"
     SaveWindowPosition="True"
@@ -40,7 +41,7 @@
     SizeToContent="WidthAndHeight"
     SnapsToDevicePixels="True"
     TextOptions.TextFormattingMode="Display"
-    TitleAlignment="Left"
+    TitleAlignment="Center"
     TitleCaps="False"
     Top="{Binding Source={x:Static props:Settings.Default}, Path=Top, Mode=TwoWay}"
     Topmost="True">
@@ -60,7 +61,7 @@
     </Controls:MetroWindow.Resources>
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
-            <Rectangle Margin="2" Opacity="0.7">
+            <Rectangle Margin="2" Opacity="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=OneWay}">
                 <Rectangle.Fill>
                     <VisualBrush />
                 </Rectangle.Fill>
@@ -70,6 +71,7 @@
     <StackPanel
         Name="DisplayBox"
         Background="Transparent"
+        Opacity="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=OneWay}"
         Visibility="Visible">
         <local:UserOptionsControl
             x:Name="Options"
@@ -77,7 +79,7 @@
             Panel.ZIndex="0"
             Visibility="Collapsed">
             <UserControl.Background>
-                <SolidColorBrush Opacity="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=TwoWay}" Color="Gray" />
+                <SolidColorBrush Opacity="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=OneWay}" Color="Gray" />
             </UserControl.Background>
         </local:UserOptionsControl>
     </StackPanel>

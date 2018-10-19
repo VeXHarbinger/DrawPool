@@ -7,8 +7,8 @@
     xmlns:hdtc="clr-namespace:Hearthstone_Deck_Tracker.Controls;assembly=HearthstoneDeckTracker"
     xmlns:local="clr-namespace:DrawPool"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    MinWidth="196"
-    MaxWidth="300"
+    xmlns:props="clr-namespace:DrawPool.Properties"
+    xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes;assembly=HearthstoneDeckTracker"
     FontStretch="Normal"
     Grid.IsSharedSizeScope="True"
     ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -17,7 +17,7 @@
     Visibility="Collapsed"
     mc:Ignorable="d">
     <UserControl.Background>
-        <SolidColorBrush Opacity="0.8" Color="Gray" />
+        <SolidColorBrush Opacity="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=OneWay}" Color="Gray" />
     </UserControl.Background>
     <UserControl.Resources>
         <Style TargetType="Label">
@@ -28,6 +28,7 @@
             <Setter Property="MinWidth" Value="50" />
             <Setter Property="Margin" Value="0" />
         </Style>
+
         <Style TargetType="RowDefinition">
             <Setter Property="Height" Value="Auto" />
             <Setter Property="MinHeight" Value="18" />
