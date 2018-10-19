@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DrawPool")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("The DrawPool HDT Plug-In")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("The High Falootin Technology, Corporation")]
 [assembly: AssemblyProduct("DrawPool")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]

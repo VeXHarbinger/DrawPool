@@ -14,8 +14,10 @@ I hope to add in the mechanics for [Recruit](https://hearthstone.gamepedia.com/R
 ![Display Example](https://raw.githubusercontent.com/VeXHarbinger/DrawPool/master/images/MinstrelDisplaySample.png)
 
 * In the lower left hand corner you see the draw probability for a card that you have one or two copies of.
+  
+  * This is indicated by the (Card Count):draw probability
 
-* If you have one (or more) copies of a card, it will also display the card draw percentage for the card you have the most copies of.
+* It will also display the card draw percentage for the card you have the most copies of, if you have more then two.
 
 * In the lower right hand corner, it shows the total number of minions in the draw pool and the total deck card count.
 
@@ -23,12 +25,8 @@ I hope to add in the mechanics for [Recruit](https://hearthstone.gamepedia.com/R
 
 ![Display Example](https://raw.githubusercontent.com/VeXHarbinger/DrawPool/master/images/PiperDisplaySample.png)
 
-* In the lower left hand corner you'll see the draw probability for the lowest cost minion card for your lowest cost minion card, or the minion with this mana cost which you have the fewest copies of.
-
-* If you have multiple minion types for this mana cost, it will also display the card draw probability for the card you have the second most copies of.
-
-  * If you happen to have three or more copies of a minion at this mana cost, it will also display a third statistic indicating the minion's copy count and it's draw probability for the minion type you have the most copies of.
-
+* In the lower left hand corner you see the draw probability for a card that you have one or more copies of.
+  * This is indicated by the (Card Count):draw probability 
 * In the lower right hand corner, it shows the total number of minions in the draw pool and the total deck card count.
 
 
