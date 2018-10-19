@@ -13,14 +13,12 @@
     xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes;assembly=HearthstoneDeckTracker"
     Title="Drawpool"
     MinWidth="200"
-    MinHeight="200"
+    MinHeight="150"
     MaxWidth="300"
     Padding="0"
     AutomationProperties.Name="Drawpool"
     BorderThickness="1"
     Focusable="True"
-    FontFamily="Segoe UI Semibold"
-    Foreground="White"
     Grid.IsSharedSizeScope="True"
     IsCloseButtonEnabled="False"
     IsMaxRestoreButtonEnabled="False"
@@ -41,7 +39,7 @@
     SizeToContent="WidthAndHeight"
     SnapsToDevicePixels="True"
     TextOptions.TextFormattingMode="Display"
-    TitleAlignment="Center"
+    TitleAlignment="Left"
     TitleCaps="False"
     Top="{Binding Source={x:Static props:Settings.Default}, Path=Top, Mode=TwoWay}"
     Topmost="True">
@@ -70,6 +68,7 @@
     </Controls:MetroWindow.IconTemplate>
     <StackPanel
         Name="DisplayBox"
+        VerticalAlignment="Top"
         Background="Transparent"
         Opacity="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=OneWay}"
         Visibility="Visible">

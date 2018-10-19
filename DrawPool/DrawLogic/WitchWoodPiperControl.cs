@@ -48,14 +48,18 @@
         /// <returns>The scoped list of <see cref="Card">Cards</see></returns>
         internal List<Card> BuildQueryDeck()
         {
-            return Core.Game.Player.PlayerCardList
-                               .Where(c => c.Type == "Minion" && (c.Count - c.InHandCount) > 0)
-                               .OrderBy(c => c.Cost)
-                               .ThenBy(c => c.Count)
-                               .ThenBy(c => c.Name)
-                               .GroupBy(c => c.Cost)
-                               .First()
-                               .ToList<Card>();
+            var cd= Core.Game.Player.PlayerCardList
+                    .Where(
+                        c => c.Type == "Minion"
+                        && (c.Count - c.InHandCount) > 0
+                    )
+                    .OrderBy(c => c.Cost)
+                    .ThenBy(c => c.Count)
+                    .ThenBy(c => c.Name)
+                    .GroupBy(c => c.Cost)
+                    .First()
+                    .ToList<Card>();
+            return cd;
         }
 
         /// <summary>
@@ -71,18 +75,24 @@
         {
             lblProbability.Content = "";
             lblDeckMix.Content = WriteDeckMix(MinionCount(), Core.Game.Player.DeckCount);
-            if (QueryDeck.Count == 1 ||  QueryDeck.Count== MinionCount())
+            if (QueryDeck.Count == 1 || QueryDeck.Count == MinionCount())
             {
                 lblProbability.Content = WriteDrawProbability(1, MinionCount(), 1);
             }
-            else if (QueryDeck.Count >= 2)
-            {
-                lblProbability.Content += " ";
-                lblProbability.Content += WriteDrawProbability(QueryDeck[1].Count, MinionCount(), 1);
-                if (QueryDeck.Count > 3)
+            else {
+                if (QueryDeck.Count >= 1)
+                {
+                    lblProbability.Content = WriteDrawProbability(1, MinionCount(), 1);
+                }
+                if (QueryDeck.Count >= 2)
                 {
                     lblProbability.Content += " ";
-                    lblProbability.Content += WriteDrawProbability(QueryDeck.Last().Count, MinionCount(), 1);
+                    lblProbability.Content += WriteDrawProbability(QueryDeck[1].Count, MinionCount(), 1);
+                    if (QueryDeck.Count >= 3)
+                    {
+                        lblProbability.Content += " ";
+                        lblProbability.Content += WriteDrawProbability(QueryDeck.Last().Count, MinionCount(), 1);
+                    }
                 }
             }
         }

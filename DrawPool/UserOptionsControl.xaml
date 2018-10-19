@@ -11,6 +11,7 @@
     xmlns:props="clr-namespace:DrawPool.Properties"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     MinWidth="200"
+    MinHeight="150"
     Margin="2"
     Background="Transparent"
     Grid.IsSharedSizeScope="True"

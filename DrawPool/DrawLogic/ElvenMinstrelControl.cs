@@ -41,7 +41,7 @@
         /// Returns the list of Minions Grouped by their Counts, for statistical purposes.
         /// </summary>
         /// <returns>The list of Minions Grouped by their Counts, for statistical purposes</returns>
-        internal List<IGrouping<int, Card>> GroupedMinion() => QueryDeck.GroupBy(c => c.Count).OrderByDescending(grp => grp.Count()).ToList();
+        internal List<IGrouping<int, Card>> GroupedMinion() => QueryDeck.GroupBy(c => c.Count).OrderByDescending(grp => grp.Count()).OrderBy(g => g.Key).ToList();
 
 
         /// <summary>
@@ -60,27 +60,18 @@
             lblDeckMix.Content = WriteDeckMix(MinionCount(), Core.Game.Player.DeckCount);
             if (MinionCount() >= 1)
             {
+                lblProbability.Content = "";
                 var gm = GroupedMinion();
                 // Next, figure out our odds
-                lblProbability.Content = WriteDrawProbability(
-                    gm.First<IGrouping<int, Card>>().First<Card>().Count,
-                    MinionCount(),
-                    2);
+                lblProbability.Content = WriteDrawProbability(gm.First<IGrouping<int, Card>>().First<Card>().Count, MinionCount(), 2);
                 if (gm.Count >= 2)
                 {
                     lblProbability.Content += " ";
-                    lblProbability.Content += WriteDrawProbability(
-                        gm[1].First<Card>().Count,
-                        MinionCount(),
-                        2);
-
+                    lblProbability.Content += WriteDrawProbability(gm[1].First<Card>().Count, MinionCount(), 2);
                     if (gm.Count >= 3)
                     {
                         lblProbability.Content += " ";
-                        lblProbability.Content += WriteDrawProbability(
-                            gm.Last<IGrouping<int, Card>>().First<Card>().Count,
-                            MinionCount(),
-                            2);
+                        lblProbability.Content += WriteDrawProbability(gm.Last<IGrouping<int, Card>>().First<Card>().Count, MinionCount(), 2);
                     }
                 }
             }
@@ -129,7 +120,11 @@
                     c.Type == "Minion" &&
                     (c.Count - c.InHandCount) > 0
                 )
-                .ToList().FixCreatedCards();
+                .OrderBy(c => c.Cost)
+                .ThenBy(c => c.Count)
+                .ThenBy(c => c.Name)
+                .ToList<Card>()
+                .FixCreatedCards();
 
             var dups = playerDeck
                 .GroupBy(c => c.Id)
@@ -151,7 +146,7 @@
                 }
             }
             playerDeck.RemoveAll(c => c.Count == 0);
-            return playerDeck.ToList<Card>();
+            return playerDeck;
         }
     }
 }

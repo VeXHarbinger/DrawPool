@@ -33,4 +33,7 @@ I hope to add in the mechanics for [Recruit](https://hearthstone.gamepedia.com/R
 
 
 ## Configuration
-You can set where the window is displayed when the player hand hovers over the trigger card from the Options => Plug-in menu
+
+* You can see and/or set where the window is displayed when the player hand hovers over the trigger card from the Options => Plug-in menu
+
+* You can also set the windows opacity, as well as which Drawpool modules to use.
