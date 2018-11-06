@@ -10,7 +10,7 @@
         /// <summary>
         /// Fixes the card's "Is Created" indicator and merges them into one big pile.
         /// </summary>
-        /// <param name="cards">The list of cards cards.</param>
+        /// <param name="cards">The list of drawable <see cref="Card">Cards</see>.</param>
         /// <returns></returns>
         public static List<Card> FixCreatedCards(this List<Card> cards)
         {

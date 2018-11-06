@@ -4,6 +4,7 @@
     using Hearthstone_Deck_Tracker.API;
     using MahApps.Metro.Controls;
     using System;
+    using System.Reflection;
     using System.Windows;
     using Settings = DrawPool.Properties.Settings;
 
@@ -120,7 +121,7 @@
         /// </summary>
         public void InitializeOpts()
         {
-            var uc = (UserOptionsControl)DisplayBox.FindChild<System.Windows.Controls.UserControl>(ViewModes.Options.ToString());
+            UserOptionsControl uc = (UserOptionsControl)DisplayBox.FindChild<System.Windows.Controls.UserControl>(ViewModes.Options.ToString());
             if (uc != null)
             {
                 uc.btnToggle.Checked += (sender, args) =>
@@ -136,9 +137,10 @@
                 uc.btnDone.Click += (sender, args) =>
                 {
                     uc.btnToggle.IsChecked = false;
-                    uc.Visibility = Visibility.Collapsed;
+                    uc.Visibility = Visibility.Hidden;
                     Visibility = Visibility.Collapsed;
                 };
+                uc.lblVersionValue.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
         }
 
@@ -148,12 +150,9 @@
         public void Reset()
         {
             // ToDo : see how this loop needs to evolve with mechanics for recruit
-            foreach (var dc in DisplayBox.Children)
+            foreach (IDraw dc in DisplayBox.Children)
             {
-                if (dc is IDraw)
-                {
-                    ((IDraw)dc).Reset();
-                }
+                dc.Reset();
             }
             Visibility = Visibility.Collapsed;
         }

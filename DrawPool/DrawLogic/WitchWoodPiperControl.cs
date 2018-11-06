@@ -103,7 +103,7 @@
         public void LoadCards()
         {
             this.QueryDeck = BuildQueryDeck();
-            this.CardList.Update(QueryDeck, true);
+            this.CardList.Update(QueryDeck.FixCreatedCards(), true);
         }
 
         /// <summary>
@@ -121,6 +121,7 @@
                 if (CheckDeckChanged())
                 {
                     LoadCards();
+                    // ToDo: Should do math be moved into the load cards process?
                     DoMath();
                 }
                 ShowDisplay(new CurtainCall { CallingView = ViewModes.WitchWoodPiper, ShouldShow = true }, new EventArgs());

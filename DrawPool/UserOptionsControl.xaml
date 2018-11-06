@@ -57,6 +57,7 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition x:Name="LastRow" Height="2*" />
+            <RowDefinition x:Name="VersionRow" Height="2*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -118,7 +119,7 @@
 
         <Button
             x:Name="btnDone"
-            Grid.Row="9"
+            Grid.Row="8"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Width="100"
@@ -130,5 +131,19 @@
             FontStretch="Expanded"
             Grid.IsSharedSizeScope="True"
             ToolTip="Save and Close" />
+        <Label
+            x:Name="lblVersion"
+            Grid.Row="11"
+            Grid.Column="0"
+            Content="Version"
+            FontFamily="Times New Roman"
+            FontSize="9" />
+        <Label
+            x:Name="lblVersionValue"
+            Grid.Row="11"
+            Grid.Column="1"
+            Content="0.0.0.0"
+            FontFamily="Times New Roman"
+            FontSize="9" />
     </Grid>
 </UserControl>

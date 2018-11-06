@@ -6,7 +6,7 @@
     using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
 
     /// <summary>
-    /// Draw Data Model
+    /// Draw Data View Model
     /// </summary>
     public class DrawDataModel
     {

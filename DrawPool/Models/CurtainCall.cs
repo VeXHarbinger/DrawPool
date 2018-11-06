@@ -15,7 +15,7 @@
     using static Hearthstone_Deck_Tracker.Windows.MessageDialogs;
 
     /// <summary>
-    /// Helper for Hiding and showing internal controls
+    /// Helper for Hiding and showing internal display controls
     /// </summary>
     public class CurtainCall
     {
