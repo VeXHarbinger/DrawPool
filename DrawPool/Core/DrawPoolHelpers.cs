@@ -5,8 +5,14 @@
     using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
     using Core = Hearthstone_Deck_Tracker.API.Core;
 
+    /// <summary>
+    /// Available Card(s) Helper(s)
+    /// </summary>
     public static class DrawPoolHelpers
     {
+
+
+
         /// <summary>
         /// Fixes the card's "Is Created" indicator and merges them into one big pile.
         /// </summary>

@@ -6,17 +6,17 @@
     public enum ViewModes
     {
         /// <summary>
-        /// The Witchwood Piper
+        /// The Options Config
         /// </summary>
         Options = 0,
 
         /// <summary>
-        /// The Witchwood Piper
+        /// The Elven Minstrel DrawPool
         /// </summary>
         ElvenMinstrel = 1,
 
         /// <summary>
-        /// The Witchwood Piper
+        /// The Witchwood Piper DrawPool
         /// </summary>
         WitchWoodPiper = 2
     }

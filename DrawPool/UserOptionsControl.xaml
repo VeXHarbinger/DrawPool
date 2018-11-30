@@ -10,17 +10,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:props="clr-namespace:DrawPool.Properties"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Width="Auto"
+    Height="Auto"
     MinWidth="200"
-    MinHeight="150"
-    Margin="2"
-    Background="Transparent"
+    MinHeight="200"
+    FontSize="14"
+    FontWeight="SemiBold"
     Grid.IsSharedSizeScope="True"
     TextOptions.TextFormattingMode="Display"
     mc:Ignorable="d">
     <UserControl.Resources>
         <Style TargetType="{x:Type Label}">
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontFamily" Value="Tahoma" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="MinWidth" Value="100" />
             <Setter Property="Grid.IsSharedSizeScope" Value="True" />
@@ -46,7 +47,7 @@
             <Setter Property="Background" Value="LightYellow" />
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="4" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -106,8 +107,8 @@
             Minimum=".20"
             TickFrequency=".10"
             TickPlacement="BottomRight"
-            Ticks="0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0"
-            ToolTip="Sets the Drawpool window opacity"
+            Ticks="0.20, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0"
+            ToolTip="Sets the DrawPool window opacity"
             Value="{Binding Opacity, Mode=TwoWay, Source={x:Static props:Settings.Default}}">
             <Slider.Background>
                 <LinearGradientBrush MappingMode="RelativeToBoundingBox" StartPoint="0.5,0" EndPoint="0.5,1">
@@ -116,7 +117,6 @@
                 </LinearGradientBrush>
             </Slider.Background>
         </Slider>
-
         <Button
             x:Name="btnDone"
             Grid.Row="8"
@@ -135,15 +135,14 @@
             x:Name="lblVersion"
             Grid.Row="11"
             Grid.Column="0"
-            Content="Version"
-            FontFamily="Times New Roman"
-            FontSize="9" />
+            HorizontalAlignment="Right"
+            Content="Version "
+            FontSize="10" />
         <Label
             x:Name="lblVersionValue"
             Grid.Row="11"
             Grid.Column="1"
             Content="0.0.0.0"
-            FontFamily="Times New Roman"
-            FontSize="9" />
+            FontSize="10" />
     </Grid>
 </UserControl>

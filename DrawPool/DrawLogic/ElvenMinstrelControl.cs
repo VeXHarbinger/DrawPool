@@ -7,7 +7,6 @@
     using System.Linq;
     using System.Windows;
     using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
-    using Core = Hearthstone_Deck_Tracker.API.Core;
 
     /// <summary>
     /// Elven Minstrel <see cref="DisplayControl">Display Control</see>
@@ -25,13 +24,6 @@
         }
 
         /// <summary>
-        /// Gets or sets the minion count.
-        /// </summary>
-        /// <value>The minion count.</value>
-        internal int MinionCount() => this.QueryDeck.Sum(c => c.Count);
-
-
-        /// <summary>
         /// The <see cref="PlayerCardList">Deck</see> object reference for the <see cref="Card">Cards</see> data.
         /// </summary>
         /// <value><returns>The list of current <see cref="Card">Cards</see></returns></value>
@@ -43,6 +35,52 @@
         /// <returns>The list of Minions Grouped by their Counts, for statistical purposes</returns>
         internal List<IGrouping<int, Card>> GroupedMinion() => QueryDeck.GroupBy(c => c.Count).OrderByDescending(grp => grp.Count()).OrderBy(g => g.Key).ToList();
 
+        /// <summary>
+        /// Gets or sets the minion count.
+        /// </summary>
+        /// <value>The minion count.</value>
+        internal int MinionCount() => this.QueryDeck.Sum(c => c.Count);
+
+        /// <summary>
+        /// Queries the <see cref="PlayerCardList">Deck</see> for specific scoped <see cref="Card">Cards</see>.
+        /// </summary>
+        /// <returns>The scoped list of <see cref="Card">Cards</see></returns>
+        public List<Card> BuildQueryDeck()
+        {
+            var playerDeck = Hearthstone_Deck_Tracker.API.Core.Game.Player
+                .PlayerCardList
+                .Where(c =>
+                    c.Type == "Minion" &&
+                    (c.Count - c.InHandCount) > 0
+                )
+                .OrderBy(c => c.Cost)
+                .ThenBy(c => c.Count)
+                .ThenBy(c => c.Name)
+                .ToList<Card>()
+                .FixCreatedCards();
+
+            var dups = playerDeck
+                .GroupBy(c => c.Id)
+                .Where(d => d.Count() > 1)
+                .ToList();
+
+            if (dups.Count >= 1)
+            {
+                foreach (var d in dups.ToList())
+                {
+                    var count = 0;
+                    Card first = d.First();
+                    foreach (var i in d)
+                    {
+                        count += i.Count;
+                        i.Count = 0;
+                    }
+                    first.Count = count;
+                }
+            }
+            playerDeck.RemoveAll(c => c.Count == 0);
+            return playerDeck;
+        }
 
         /// <summary>
         /// Gets the unique card identifier.
@@ -55,9 +93,8 @@
         /// </summary>
         public void DoMath()
         {
-
             // First, figure out our remaining card mix
-            lblDeckMix.Content = WriteDeckMix(MinionCount(), Core.Game.Player.DeckCount);
+            lblDeckMix.Content = WriteDeckMix(MinionCount(), Hearthstone_Deck_Tracker.API.Core.Game.Player.DeckCount);
             if (MinionCount() >= 1)
             {
                 lblProbability.Content = "";
@@ -106,47 +143,6 @@
                 }
                 ShowDisplay(new CurtainCall { CallingView = ViewModes.ElvenMinstrel, ShouldShow = true }, new EventArgs());
             }
-        }
-
-        /// <summary>
-        /// Queries the <see cref="PlayerCardList">Deck</see> for specific scoped <see cref="Card">Cards</see>.
-        /// </summary>
-        /// <returns>The scoped list of <see cref="Card">Cards</see></returns>
-        public List<Card> BuildQueryDeck()
-        {
-            var playerDeck = Hearthstone_Deck_Tracker.API.Core.Game.Player
-                .PlayerCardList
-                .Where(c =>
-                    c.Type == "Minion" &&
-                    (c.Count - c.InHandCount) > 0
-                )
-                .OrderBy(c => c.Cost)
-                .ThenBy(c => c.Count)
-                .ThenBy(c => c.Name)
-                .ToList<Card>()
-                .FixCreatedCards();
-
-            var dups = playerDeck
-                .GroupBy(c => c.Id)
-                .Where(d => d.Count() > 1)
-                .ToList();
-
-            if (dups.Count >= 1)
-            {
-                foreach (var d in dups.ToList())
-                {
-                    var count = 0;
-                    Card first = d.First();
-                    foreach (var i in d)
-                    {
-                        count += i.Count;
-                        i.Count = 0;
-                    }
-                    first.Count = count;
-                }
-            }
-            playerDeck.RemoveAll(c => c.Count == 0);
-            return playerDeck;
         }
     }
 }

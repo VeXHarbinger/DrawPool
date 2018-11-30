@@ -48,7 +48,7 @@
         /// <returns>The scoped list of <see cref="Card">Cards</see></returns>
         internal List<Card> BuildQueryDeck()
         {
-            var cd= Core.Game.Player.PlayerCardList
+            var cd= Hearthstone_Deck_Tracker.API.Core.Game.Player.PlayerCardList
                     .Where(
                         c => c.Type == "Minion"
                         && (c.Count - c.InHandCount) > 0
@@ -74,7 +74,7 @@
         public void DoMath()
         {
             lblProbability.Content = "";
-            lblDeckMix.Content = WriteDeckMix(MinionCount(), Core.Game.Player.DeckCount);
+            lblDeckMix.Content = WriteDeckMix(MinionCount(), Hearthstone_Deck_Tracker.API.Core.Game.Player.DeckCount);
             if (QueryDeck.Count == 1 || QueryDeck.Count == MinionCount())
             {
                 lblProbability.Content = WriteDrawProbability(1, MinionCount(), 1);

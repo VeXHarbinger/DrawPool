@@ -11,12 +11,13 @@
     xmlns:metro="clr-namespace:MahApps.Metro;assembly=MahApps.Metro"
     xmlns:props="clr-namespace:DrawPool.Properties"
     xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes;assembly=HearthstoneDeckTracker"
-    Title="Drawpool"
-    MinWidth="200"
-    MinHeight="150"
+    Title="DrawPool"
+    Width="Auto"
+    Height="Auto"
     MaxWidth="300"
-    Padding="0"
-    AutomationProperties.Name="Drawpool"
+    Padding="2"
+    AllowsTransparency="True"
+    AutomationProperties.Name="DrawPool"
     BorderThickness="1"
     Focusable="True"
     Grid.IsSharedSizeScope="True"
@@ -42,7 +43,8 @@
     TitleAlignment="Left"
     TitleCaps="False"
     Top="{Binding Source={x:Static props:Settings.Default}, Path=Top, Mode=TwoWay}"
-    Topmost="True">
+    Topmost="True"
+    WindowStyle="None">
     <Controls:MetroWindow.Resources>
         <ResourceDictionary>
             <themes:ThemeManager x:Key="ThemeManager" />
@@ -54,32 +56,37 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Cobalt.xaml" />
                 <!--  and should use the dark theme  -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/HearthstoneDeckTracker;component/Resources/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Controls:MetroWindow.Resources>
-    <Controls:MetroWindow.IconTemplate>
-        <DataTemplate>
-            <Rectangle Margin="2" Opacity="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=OneWay}">
-                <Rectangle.Fill>
-                    <VisualBrush />
-                </Rectangle.Fill>
-            </Rectangle>
-        </DataTemplate>
-    </Controls:MetroWindow.IconTemplate>
+    <Controls:MetroWindow.Background>
+        <ImageBrush
+            AlignmentX="Left"
+            AlignmentY="Top"
+            ImageSource="pack://application:,,,/HearthstoneDeckTracker;component/Resources/tactile_noise.png"
+            Stretch="None"
+            TileMode="Tile"
+            ViewboxUnits="Absolute"
+            Viewport="0,0,48,48"
+            ViewportUnits="Absolute" />
+    </Controls:MetroWindow.Background>
     <StackPanel
         Name="DisplayBox"
         VerticalAlignment="Top"
-        Background="Transparent"
         Opacity="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=OneWay}"
         Visibility="Visible">
+        <StackPanel.Background>
+            <ImageBrush
+                AlignmentX="Left"
+                AlignmentY="Top"
+                ImageSource="pack://application:,,,/HearthstoneDeckTracker;component/Resources/tactile_noise.png"
+                TileMode="Tile" />
+        </StackPanel.Background>
         <local:UserOptionsControl
             x:Name="Options"
             Margin="0"
             Panel.ZIndex="0"
-            Visibility="Collapsed">
-            <UserControl.Background>
-                <SolidColorBrush Opacity="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=OneWay}" Color="Gray" />
-            </UserControl.Background>
-        </local:UserOptionsControl>
+            Visibility="Collapsed" />
     </StackPanel>
 </Controls:MetroWindow>

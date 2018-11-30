@@ -1,10 +1,12 @@
-﻿namespace DrawPool
+﻿using System;
+using System.Windows.Controls;
+using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
+using Core = Hearthstone_Deck_Tracker.API.Core;
+using Helper = Hearthstone_Deck_Tracker.Helper;
+
+namespace DrawPool
 {
-    using System;
-    using System.Windows.Controls;
-    using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
-    using Core = Hearthstone_Deck_Tracker.API.Core;
-    using Helper = Hearthstone_Deck_Tracker.Helper;
+
 
     /// <summary>
     /// The Possible Draw List Display Control
@@ -29,7 +31,7 @@
         /// <value>
         /// The deck hash.
         /// </value>
-        public int DeckHash => Core.Game.Player.Deck.GetHashCode();
+        public int DeckHash => Hearthstone_Deck_Tracker.API.Core.Game.Player.Deck.GetHashCode();
 
         /// <summary>
         /// Checks if the deck has changed, since the last check..
@@ -37,9 +39,9 @@
         /// <returns>True, if the deck has changed, since the last check.</returns>
         internal bool CheckDeckChanged()
         {
-            if (deckHash != Core.Game.Player.Deck.GetHashCode())
+            if (deckHash != Hearthstone_Deck_Tracker.API.Core.Game.Player.Deck.GetHashCode())
             {
-                deckHash = Core.Game.Player.Deck.GetHashCode();
+                deckHash = Hearthstone_Deck_Tracker.API.Core.Game.Player.Deck.GetHashCode();
                 return true;
             }
             else

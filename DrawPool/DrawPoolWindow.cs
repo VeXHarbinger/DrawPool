@@ -145,7 +145,7 @@
         }
 
         /// <summary>
-        /// Resets this instance.
+        /// Resets this window instance.
         /// </summary>
         public void Reset()
         {

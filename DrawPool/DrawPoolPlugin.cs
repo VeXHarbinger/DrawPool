@@ -7,7 +7,7 @@
     using Settings = DrawPool.Properties.Settings;
 
     /// <summary>
-    /// The plug-in Instance
+    /// The DrawPool plug-in Instance
     /// </summary>
     /// <seealso cref="Hearthstone_Deck_Tracker.Plugins.IPlugin" />
     public class DrawPoolPlugin : IPlugin
@@ -30,9 +30,9 @@
         public string ButtonText => "Settings";
 
         /// <summary>
-        /// The description.
+        /// The plug-in description.
         /// </summary>
-        /// <value>The description.</value>
+        /// <value>The plug-in description.</value>
         public string Description => @"Helps to see scoped draw pools";
 
         /// <summary>
@@ -45,7 +45,7 @@
         /// The plug-in name.
         /// </summary>
         /// <value>The plug-in name.</value>
-        public string Name => "Drawpool";
+        public string Name => "DrawPool";
 
         /// <summary>
         /// The version.
@@ -60,7 +60,7 @@
         {
             this.MenuItem = new MenuItem()
             {
-                Header = "Drawpool"
+                Header = Name
             };
 
             this.MenuItem.Click += (sender, args) =>
@@ -103,10 +103,6 @@
         public void OnLoad()
         {
             win = new DrawPoolWindow();
-            //win.Initialized += (sender, e) =>
-            //{
-            //    win.InitializeDrawPool();
-            //};
             win.InitializeDrawPool();
             AddMenuItem();
         }
