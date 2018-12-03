@@ -12,8 +12,6 @@
     Width="Auto"
     Height="Auto"
     VerticalAlignment="Top"
-    FontFamily="pack://application:,,,/HearthstoneDeckTracker;component/Resources/#Chunkfive"
-    FontSize="20"
     Grid.IsSharedSizeScope="True"
     ScrollViewer.VerticalScrollBarVisibility="Auto"
     TextOptions.TextFormattingMode="Display"
@@ -35,17 +33,12 @@
             <Setter Property="MinWidth" Value="100" />
         </Style>
     </UserControl.Resources>
-    <UserControl.Background>
-        <ImageBrush
-            AlignmentX="Left"
-            AlignmentY="Top"
-            ImageSource="pack://application:,,,/HearthstoneDeckTracker;component/Resources/tactile_noise.png"
-            TileMode="Tile" />
-    </UserControl.Background>
-    <StackPanel VerticalAlignment="Bottom" Visibility="Visible">
+    <StackPanel
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Visibility="Visible">
         <hdtc:AnimatedCardList Name="CardList" Padding="2" />
         <Grid Margin="0">
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -62,9 +55,7 @@
                 Name="lblDeckMix"
                 Grid.Row="0"
                 Grid.Column="1"
-                HorizontalAlignment="Right"
-                HorizontalContentAlignment="Right"
-                Grid.IsSharedSizeScope="True" />
+                HorizontalAlignment="Right" />
         </Grid>
     </StackPanel>
 </UserControl>

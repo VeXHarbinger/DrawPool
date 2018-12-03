@@ -1,12 +1,9 @@
-﻿using System;
-using System.Windows.Controls;
-using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
-using Core = Hearthstone_Deck_Tracker.API.Core;
-using Helper = Hearthstone_Deck_Tracker.Helper;
-
-namespace DrawPool
+﻿namespace DrawPool
 {
-
+    using System;
+    using System.Windows.Controls;
+    using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
+    using Helper = Hearthstone_Deck_Tracker.Helper;
 
     /// <summary>
     /// The Possible Draw List Display Control
@@ -28,9 +25,7 @@ namespace DrawPool
         /// <summary>
         /// Gets the deck hash.
         /// </summary>
-        /// <value>
-        /// The deck hash.
-        /// </value>
+        /// <value>The deck hash.</value>
         public int DeckHash => Hearthstone_Deck_Tracker.API.Core.Game.Player.Deck.GetHashCode();
 
         /// <summary>

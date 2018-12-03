@@ -19,9 +19,6 @@
     Grid.IsSharedSizeScope="True"
     TextOptions.TextFormattingMode="Display"
     mc:Ignorable="d">
-    <UserControl.Background>
-        <SolidColorBrush Opacity="{Binding Source={x:Static props:Settings.Default}, Path=Opacity, Mode=OneWay}" Color="Transparent" />
-    </UserControl.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />

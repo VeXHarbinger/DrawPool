@@ -60,17 +60,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Controls:MetroWindow.Resources>
-    <Controls:MetroWindow.Background>
-        <ImageBrush
-            AlignmentX="Left"
-            AlignmentY="Top"
-            ImageSource="pack://application:,,,/HearthstoneDeckTracker;component/Resources/tactile_noise.png"
-            Stretch="None"
-            TileMode="Tile"
-            ViewboxUnits="Absolute"
-            Viewport="0,0,48,48"
-            ViewportUnits="Absolute" />
-    </Controls:MetroWindow.Background>
     <StackPanel
         Name="DisplayBox"
         VerticalAlignment="Top"
@@ -81,12 +70,15 @@
                 AlignmentX="Left"
                 AlignmentY="Top"
                 ImageSource="pack://application:,,,/HearthstoneDeckTracker;component/Resources/tactile_noise.png"
-                TileMode="Tile" />
+                Stretch="None"
+                TileMode="Tile"
+                ViewboxUnits="Absolute"
+                Viewport="0,0,48,48"
+                ViewportUnits="Absolute" />
         </StackPanel.Background>
         <local:UserOptionsControl
             x:Name="Options"
             Margin="0"
-            Panel.ZIndex="0"
             Visibility="Collapsed" />
     </StackPanel>
 </Controls:MetroWindow>

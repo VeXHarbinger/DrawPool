@@ -4,6 +4,7 @@
     using Hearthstone_Deck_Tracker.API;
     using MahApps.Metro.Controls;
     using System;
+    using System.Linq;
     using System.Reflection;
     using System.Windows;
     using Settings = DrawPool.Properties.Settings;
@@ -35,6 +36,16 @@
                 currentView = value;
                 DisplayBox.FindChild<System.Windows.Controls.UserControl>(currentView.ToString()).Visibility = Visibility.Visible;
             }
+        }
+
+        /// <summary>
+        /// Initializes the window options, to resolve control transparency.
+        /// </summary>
+        private void InitializeWinOpts()
+        {
+            this.WindowStyle = WindowStyle.None;
+            this.AllowsTransparency = true;
+            this.Background = System.Windows.Media.Brushes.Transparent;
         }
 
         /// <summary>
@@ -106,17 +117,6 @@
         }
 
         /// <summary>
-        /// Initializes the window options, to resolve control transparency.
-        /// </summary>
-        private void InitializeWinOpts()
-        {
-
-            this.WindowStyle = WindowStyle.None;
-            this.AllowsTransparency = true;
-            this.Background = System.Windows.Media.Brushes.Transparent;
-        }
-
-        /// <summary>
         /// Initializes the Options.
         /// </summary>
         public void InitializeOpts()
@@ -150,7 +150,7 @@
         public void Reset()
         {
             // ToDo : see how this loop needs to evolve with mechanics for recruit
-            foreach (IDraw dc in DisplayBox.Children)
+            foreach (IDraw dc in DisplayBox.Children.OfType<IDraw>())
             {
                 dc.Reset();
             }

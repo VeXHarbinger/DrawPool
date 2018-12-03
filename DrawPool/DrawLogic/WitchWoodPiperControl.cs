@@ -7,7 +7,6 @@
     using System.Linq;
     using System.Windows;
     using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
-    using Core = Hearthstone_Deck_Tracker.API.Core;
 
     /// <summary>
     /// WitchWood Piper Display Control
@@ -25,18 +24,6 @@
         }
 
         /// <summary>
-        /// Gets or sets the minion count.
-        /// </summary>
-        /// <value>The minion count.</value>
-        internal int MinionCount() => QueryDeck.Sum(c => c.Count);
-
-        /// <summary>
-        /// Gets or sets the minion largest qty.
-        /// </summary>
-        /// <value>The minion largest qty.</value>
-        internal int MinionLargestQty() => QueryDeck.OrderBy(c => c.Count).FirstOrDefault().Count;
-
-        /// <summary>
         /// The <see cref="PlayerCardList">Deck</see> object reference for the <see cref="Card">Cards</see> data.
         /// </summary>
         /// <value><returns>The list of current <see cref="Card">Cards</see></returns></value>
@@ -48,19 +35,34 @@
         /// <returns>The scoped list of <see cref="Card">Cards</see></returns>
         internal List<Card> BuildQueryDeck()
         {
-            var cd= Hearthstone_Deck_Tracker.API.Core.Game.Player.PlayerCardList
-                    .Where(
-                        c => c.Type == "Minion"
-                        && (c.Count - c.InHandCount) > 0
-                    )
-                    .OrderBy(c => c.Cost)
-                    .ThenBy(c => c.Count)
-                    .ThenBy(c => c.Name)
-                    .GroupBy(c => c.Cost)
-                    .First()
-                    .ToList<Card>();
-            return cd;
+
+            var playerDeck = Hearthstone_Deck_Tracker.API.Core.Game.Player
+                .PlayerCardList
+                .Where(c =>
+                    c.Type == "Minion" &&
+                    c.Count > 0
+                )
+                .ToList<Card>()
+                .FixCreatedCards()
+                .OrderBy(c => c.Cost)
+                .ThenBy(c => c.Count)
+                .ThenBy(c => c.Name)
+                .GroupBy(c => c.Cost)
+                .First()
+                .ToList<Card>()
+                .FixDuplicateCards()
+                ;
+
+            //c.EqualsWithCount  c.Mechanics
+
+            return playerDeck;
         }
+
+        /// <summary>
+        /// Gets or sets the minion count.
+        /// </summary>
+        /// <value>The minion count.</value>
+        internal int MinionCount() => QueryDeck.Sum(c => c.Count);
 
         /// <summary>
         /// Gets the unique card identifier.
@@ -75,24 +77,22 @@
         {
             lblProbability.Content = "";
             lblDeckMix.Content = WriteDeckMix(MinionCount(), Hearthstone_Deck_Tracker.API.Core.Game.Player.DeckCount);
-            if (QueryDeck.Count == 1 || QueryDeck.Count == MinionCount())
+            if (QueryDeck.Count >= 1 || QueryDeck.Count == MinionCount())
             {
-                lblProbability.Content = WriteDrawProbability(1, MinionCount(), 1);
+                lblProbability.Content = WriteDrawProbability(QueryDeck[0].Count, MinionCount(), 1);
             }
-            else {
-                if (QueryDeck.Count >= 1)
-                {
-                    lblProbability.Content = WriteDrawProbability(1, MinionCount(), 1);
-                }
-                if (QueryDeck.Count >= 2)
+            if (QueryDeck.Count >= 2)
+            {
+                if (QueryDeck[1].Count != QueryDeck[0].Count)
                 {
                     lblProbability.Content += " ";
                     lblProbability.Content += WriteDrawProbability(QueryDeck[1].Count, MinionCount(), 1);
-                    if (QueryDeck.Count >= 3)
-                    {
-                        lblProbability.Content += " ";
-                        lblProbability.Content += WriteDrawProbability(QueryDeck.Last().Count, MinionCount(), 1);
-                    }
+                }
+
+                if (QueryDeck.Count >= 3)
+                {
+                    lblProbability.Content += " ";
+                    lblProbability.Content += WriteDrawProbability(QueryDeck.Last().Count, MinionCount(), 1);
                 }
             }
         }
@@ -102,8 +102,8 @@
         /// </summary>
         public void LoadCards()
         {
-            this.QueryDeck = BuildQueryDeck();
-            this.CardList.Update(QueryDeck.FixCreatedCards(), true);
+           this.QueryDeck = BuildQueryDeck();
+           this.CardList.Update(this.QueryDeck, true);
         }
 
         /// <summary>

@@ -11,5 +11,6 @@
         {
             InitializeComponent();
         }
+        public void Reset() { }
     }
 }

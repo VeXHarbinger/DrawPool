@@ -57,28 +57,9 @@
                 .ThenBy(c => c.Count)
                 .ThenBy(c => c.Name)
                 .ToList<Card>()
-                .FixCreatedCards();
+                .FixCreatedCards()
+                .FixDuplicateCards();
 
-            var dups = playerDeck
-                .GroupBy(c => c.Id)
-                .Where(d => d.Count() > 1)
-                .ToList();
-
-            if (dups.Count >= 1)
-            {
-                foreach (var d in dups.ToList())
-                {
-                    var count = 0;
-                    Card first = d.First();
-                    foreach (var i in d)
-                    {
-                        count += i.Count;
-                        i.Count = 0;
-                    }
-                    first.Count = count;
-                }
-            }
-            playerDeck.RemoveAll(c => c.Count == 0);
             return playerDeck;
         }
 
