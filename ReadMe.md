@@ -26,7 +26,7 @@ I hope to add in the mechanics for [Recruit](https://hearthstone.gamepedia.com/R
 * You can see and/or set where the window is displayed when the player hand hovers over the trigger card from the Options => Plug-in menu
 * You can also set the windows opacity, as well as which DrawPool modules to use.
 
-[![GitHub Latest](https://img.shields.io/github/release/VeXHarbinger/DrawPool.svg)](https://github.com/djdookie/DrawPool/releases/latest)
+[![GitHub Latest](https://img.shields.io/github/release/VeXHarbinger/DrawPool.svg)](https://github.com/VeXHarbinger/DrawPool/releases/latest)
 [![Github All Downloads](https://img.shields.io/github/downloads/VeXHarbinger/DrawPool/total.svg)](https://github.com/VeXHarbinger/DrawPool/releases)
 
 #### [How to install Plugins](https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/Available-Plugins#how-to-install-plugins)
