@@ -3,10 +3,6 @@
 This is a plug-in for the [Hearthstone Deck Tracker](https://github.com/HearthSim/Hearthstone-Deck-Tracker).
 Currently, it shows you the possible cards that could be drawn from your hand with the [Elven Minstrel](https://hearthstone.gamepedia.com/Elven_Minstrel) or the [Witchwood Piper](https://hearthstone.gamepedia.com/Witchwood_Piper).
 
-This, of course, only predicts the known deck cards.
-
-I hope to add in the mechanics for [Recruit](https://hearthstone.gamepedia.com/Recruit) soon.
-
 ## What this plug-in does for the ..
 ### [Elven Minstrel](https://hearthstone.gamepedia.com/Elven_Minstrel)
 ![Display Example](https://raw.githubusercontent.com/VeXHarbinger/DrawPool/master/images/MinstrelDisplaySample.png)
