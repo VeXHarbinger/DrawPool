@@ -1,6 +1,8 @@
 ﻿namespace DrawPool
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Windows.Controls;
     using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
     using Helper = Hearthstone_Deck_Tracker.Helper;
@@ -29,6 +31,33 @@
         public int DeckHash => Hearthstone_Deck_Tracker.API.Core.Game.Player.Deck.GetHashCode();
 
         /// <summary>
+        /// The <see cref="PlayerCardList">Deck</see> object reference for the <see cref="Card">Cards</see> data.
+        /// </summary>
+        /// <value><returns>The list of current <see cref="Card">Cards</see></returns></value>
+        public List<Card> QueryDeck { get; set; }
+
+        /// <summary>
+        /// Queries the <see cref="PlayerCardList">Deck</see> for specific scoped <see cref="Card">Cards</see>.
+        /// </summary>
+        /// <returns>The scoped list of <see cref="Card">Cards</see></returns>
+        internal virtual List<Card> BuildQueryDeck()
+        {
+            var playerDeck = Hearthstone_Deck_Tracker.API.Core.Game.Player
+                .PlayerCardList
+                .Where(c =>
+                    c.Type == "Minion" &&
+                    (c.Count - c.InHandCount) > 0
+                )
+                .OrderBy(c => c.Cost)
+                .ThenBy(c => c.Count)
+                .ThenBy(c => c.Name)
+                .ToList<Card>()
+                .FixCreatedCards()
+                .FixDuplicateCards();
+            return playerDeck;
+        }
+
+        /// <summary>
         /// Checks if the deck has changed, since the last check..
         /// </summary>
         /// <returns>True, if the deck has changed, since the last check.</returns>
@@ -46,13 +75,19 @@
         }
 
         /// <summary>
+        /// Gets or sets the minion count.
+        /// </summary>
+        /// <value>The minion count.</value>
+        internal int MinionCount() => QueryDeck.Sum(c => c.Count);
+
+        /// <summary>
         /// Checks the panel to see if there is data to display.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         internal void ShowDisplay(object sender, EventArgs e)
         {
-            if (this.RaiseCurtain != null && this.CardList.Items.Count > 0)
+            if (this.RaiseCurtain != null)  // hack: && this.CardList.Items.Count > 0
             {
                 RaiseCurtain(sender, e);
             }
@@ -92,6 +127,15 @@
         {
             return Math.Round(
                 Helper.DrawProbability(copies, poolsize, draw) * 100, dec);
+        }
+
+        /// <summary>
+        /// Loads the cards, sorts and filters as needed.
+        /// </summary>
+        public void LoadCards()
+        {
+            this.QueryDeck = BuildQueryDeck();
+            this.CardList.Update(this.QueryDeck, true);
         }
 
         /// <summary>

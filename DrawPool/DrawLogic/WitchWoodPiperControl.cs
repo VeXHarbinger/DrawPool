@@ -24,18 +24,11 @@
         }
 
         /// <summary>
-        /// The <see cref="PlayerCardList">Deck</see> object reference for the <see cref="Card">Cards</see> data.
-        /// </summary>
-        /// <value><returns>The list of current <see cref="Card">Cards</see></returns></value>
-        public List<Card> QueryDeck { get; set; }
-
-        /// <summary>
         /// Queries the <see cref="PlayerCardList">Deck</see> for specific scoped <see cref="Card">Cards</see>.
         /// </summary>
         /// <returns>The scoped list of <see cref="Card">Cards</see></returns>
-        internal List<Card> BuildQueryDeck()
+        internal override List<Card> BuildQueryDeck()
         {
-
             var playerDeck = Hearthstone_Deck_Tracker.API.Core.Game.Player
                 .PlayerCardList
                 .Where(c =>
@@ -57,12 +50,6 @@
 
             return playerDeck;
         }
-
-        /// <summary>
-        /// Gets or sets the minion count.
-        /// </summary>
-        /// <value>The minion count.</value>
-        internal int MinionCount() => QueryDeck.Sum(c => c.Count);
 
         /// <summary>
         /// Gets the unique card identifier.
@@ -95,15 +82,6 @@
                     lblProbability.Content += WriteDrawProbability(QueryDeck.Last().Count, MinionCount(), 1);
                 }
             }
-        }
-
-        /// <summary>
-        /// Loads the cards, sorts and filters as needed.
-        /// </summary>
-        public void LoadCards()
-        {
-           this.QueryDeck = BuildQueryDeck();
-           this.CardList.Update(this.QueryDeck, true);
         }
 
         /// <summary>

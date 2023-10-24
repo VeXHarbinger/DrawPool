@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:props="clr-namespace:DrawPool.Properties"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes;assembly=HearthstoneDeckTracker"
     Width="Auto"
     Height="Auto"
     MinWidth="200"

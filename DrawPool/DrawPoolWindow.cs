@@ -49,7 +49,7 @@
         }
 
         /// <summary>
-        /// Called when [mouse off].
+        /// Called when the mouse focus moves off the card.
         /// </summary>
         private void OnMouseOff()
         {
@@ -76,9 +76,25 @@
         }
 
         /// <summary>
-        /// Initializes the By Card modules.
+        /// Initializes the ElvenMinstrel Control.
         /// </summary>
-        public void InitializeByCardModules()
+        internal void InitializeMinstrel()
+        {
+            if (Settings.Default.IsMinstrelEnabled)
+            {
+                var dc = new ElvenMinstrelControl()
+                {
+                    Name = "ElvenMinstrel"
+                };
+                dc.RaiseCurtain += new EventHandler(Display_Helper);
+                DisplayBox.Children.Add(dc);
+            }
+        }
+
+        /// <summary>
+        /// Initializes the WitchWoodPiper Control.
+        /// </summary>
+        internal void InitializePiper()
         {
             if (Settings.Default.IsPiperEnabled)
             {
@@ -89,15 +105,15 @@
                 dc.RaiseCurtain += new EventHandler(Display_Helper);
                 DisplayBox.Children.Add(dc);
             }
-            if (Settings.Default.IsMinstrelEnabled)
-            {
-                var dc = new ElvenMinstrelControl()
-                {
-                    Name = "ElvenMinstrel"
-                };
-                dc.RaiseCurtain += new EventHandler(Display_Helper);
-                DisplayBox.Children.Add(dc);
-            }
+        }
+
+        /// <summary>
+        /// Initializes the By Card modules.
+        /// </summary>
+        public void InitializeByCardModules()
+        {
+            InitializeMinstrel();
+            InitializePiper();
         }
 
         /// <summary>

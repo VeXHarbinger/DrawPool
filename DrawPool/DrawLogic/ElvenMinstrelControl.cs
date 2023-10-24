@@ -24,44 +24,10 @@
         }
 
         /// <summary>
-        /// The <see cref="PlayerCardList">Deck</see> object reference for the <see cref="Card">Cards</see> data.
-        /// </summary>
-        /// <value><returns>The list of current <see cref="Card">Cards</see></returns></value>
-        public List<Card> QueryDeck { get; set; }
-
-        /// <summary>
         /// Returns the list of Minions Grouped by their Counts, for statistical purposes.
         /// </summary>
         /// <returns>The list of Minions Grouped by their Counts, for statistical purposes</returns>
         internal List<IGrouping<int, Card>> GroupedMinion() => QueryDeck.GroupBy(c => c.Count).OrderByDescending(grp => grp.Count()).OrderBy(g => g.Key).ToList();
-
-        /// <summary>
-        /// Gets or sets the minion count.
-        /// </summary>
-        /// <value>The minion count.</value>
-        internal int MinionCount() => this.QueryDeck.Sum(c => c.Count);
-
-        /// <summary>
-        /// Queries the <see cref="PlayerCardList">Deck</see> for specific scoped <see cref="Card">Cards</see>.
-        /// </summary>
-        /// <returns>The scoped list of <see cref="Card">Cards</see></returns>
-        public List<Card> BuildQueryDeck()
-        {
-            var playerDeck = Hearthstone_Deck_Tracker.API.Core.Game.Player
-                .PlayerCardList
-                .Where(c =>
-                    c.Type == "Minion" &&
-                    (c.Count - c.InHandCount) > 0
-                )
-                .OrderBy(c => c.Cost)
-                .ThenBy(c => c.Count)
-                .ThenBy(c => c.Name)
-                .ToList<Card>()
-                .FixCreatedCards()
-                .FixDuplicateCards();
-
-            return playerDeck;
-        }
 
         /// <summary>
         /// Gets the unique card identifier.
@@ -96,22 +62,12 @@
         }
 
         /// <summary>
-        /// Loads the list of <see cref="Card">Cards</see>, by combining copies
-        /// </summary>
-        /// <param name="cards">The List of <see cref="Card">Cards</see>.</param>
-        public void LoadCards()
-        {
-            this.QueryDeck = BuildQueryDeck();
-            this.CardList.Update(QueryDeck, true);
-        }
-
-        /// <summary>
         /// When the Player mouses over a <see cref="Card" /> in his hand.
         /// </summary>
         /// <param name="card">The <see cref="Card" />.</param>
         public void PlayerHandMouseOver(Card card)
         {
-            if (card.Id != CardId())
+            if (!card.Id.Contains(CardId()))
             {
                 this.Visibility = Visibility.Collapsed;
             }

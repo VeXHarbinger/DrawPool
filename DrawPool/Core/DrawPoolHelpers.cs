@@ -10,6 +10,28 @@
     public static class DrawPoolHelpers
     {
         /// <summary>
+        /// Queries the <see cref="PlayerCardList">Deck</see> for specific scoped <see cref="Card">Cards</see>.
+        /// </summary>
+        /// <returns>The scoped list of <see cref="Card">Cards</see></returns>
+        public static List<Card> BuildQueryDeck()
+        {
+            var playerDeck = Hearthstone_Deck_Tracker.API.Core.Game.Player
+                 .PlayerCardList
+                 .Where(c =>
+                     c.Type == "Minion" &&
+                     (c.Count - c.InHandCount) > 0
+                 )
+                 .OrderBy(c => c.Cost)
+                 .ThenBy(c => c.Count)
+                 .ThenBy(c => c.Name)
+                 .ToList<Card>()
+                 .FixCreatedCards()
+                 .FixDuplicateCards();
+
+            return playerDeck;
+        }
+
+        /// <summary>
         /// Fixes the card's "Is Created" indicator and merges them into one big pile.
         /// </summary>
         /// <param name="cards">The list of drawable <see cref="Card">Cards</see>.</param>

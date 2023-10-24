@@ -2,6 +2,7 @@
     x:Class="DrawPool.DisplayControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:hdt="clr-namespace:Hearthstone_Deck_Tracker;assembly=HearthstoneDeckTracker"
     xmlns:hdtc="clr-namespace:Hearthstone_Deck_Tracker.Controls;assembly=HearthstoneDeckTracker"
@@ -11,6 +12,8 @@
     xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes;assembly=HearthstoneDeckTracker"
     Width="Auto"
     Height="Auto"
+    MinWidth="200"
+    MinHeight="200"
     VerticalAlignment="Top"
     Grid.IsSharedSizeScope="True"
     ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -37,7 +40,11 @@
         HorizontalAlignment="Center"
         VerticalAlignment="Top"
         Visibility="Visible">
-        <hdtc:AnimatedCardList Name="CardList" Padding="2" />
+        <hdtc:AnimatedCardList
+            Name="CardList"
+            MinWidth="100"
+            MinHeight="100"
+            Padding="2" />
         <Grid Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />

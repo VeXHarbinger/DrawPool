@@ -33,7 +33,7 @@
         /// The plug-in description.
         /// </summary>
         /// <value>The plug-in description.</value>
-        public string Description => @"Helps to see scoped draw pools";
+        public string Description => @"Helps to see scoped draw pools from the current cards in your deck.";
 
         /// <summary>
         /// Gets or sets the main <see cref="MenuItem">Menu Item</see>.
@@ -76,8 +76,8 @@
         {
             if (Settings.Default == null)
             {
-                Settings.Default.IsMinstrelEnabled = true;
-                Settings.Default.IsPiperEnabled = true;
+                Settings.Default.IsMinstrelEnabled = Properties.Settings.Default.IsMinstrelEnabled || true;
+                Settings.Default.IsPiperEnabled = Properties.Settings.Default.IsPiperEnabled || false;
                 Settings.Default.Scale = 100;
                 Settings.Default.Opacity = 1.00;
                 Settings.Default.Top = 400;
@@ -108,7 +108,7 @@
         }
 
         /// <summary>
-        /// Called when [unload].
+        /// Called when during the window clean-up.
         /// </summary>
         public void OnUnload()
         {

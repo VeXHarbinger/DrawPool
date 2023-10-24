@@ -1,19 +1,5 @@
 ﻿namespace DrawPool.Models
 {
-    using MahApps.Metro.Controls;
-    using System;
-    using System.Windows;
-    using System.Windows.Controls;
-    using Hearthstone_Deck_Tracker.Controls;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
-    using Core = Hearthstone_Deck_Tracker.API.Core;
-    using Helper = Hearthstone_Deck_Tracker.Helper;
-    using Hearthstone_Deck_Tracker;
-    using Hearthstone_Deck_Tracker.API;
-    using static Hearthstone_Deck_Tracker.Windows.MessageDialogs;
-
     /// <summary>
     /// Helper for Hiding and showing internal display controls
     /// </summary>
