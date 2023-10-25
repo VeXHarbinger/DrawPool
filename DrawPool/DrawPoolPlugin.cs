@@ -48,9 +48,9 @@
         public string Name => "DrawPool";
 
         /// <summary>
-        /// The version.
+        /// The plugin version.
         /// </summary>
-        /// <value>The version.</value>
+        /// <value>The plugin version.</value>
         public Version Version => Assembly.GetExecutingAssembly().GetName().Version;
 
         /// <summary>
