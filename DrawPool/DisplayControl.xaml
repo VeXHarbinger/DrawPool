@@ -12,8 +12,8 @@
     xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes;assembly=HearthstoneDeckTracker"
     Width="Auto"
     Height="Auto"
-    MinWidth="200"
-    MinHeight="200"
+    MinWidth="100"
+    MinHeight="100"
     VerticalAlignment="Top"
     Grid.IsSharedSizeScope="True"
     ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -42,9 +42,10 @@
         Visibility="Visible">
         <hdtc:AnimatedCardList
             Name="CardList"
-            MinWidth="100"
-            MinHeight="100"
-            Padding="2" />
+            MinWidth="50"
+            MinHeight="50"
+            Margin="1"
+            Padding="0" />
         <Grid Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
