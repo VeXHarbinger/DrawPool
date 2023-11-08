@@ -1,10 +1,12 @@
 ﻿namespace DrawPool
 {
+    using global::DrawPool.Controls;
     using Hearthstone_Deck_Tracker.Plugins;
     using System;
     using System.Reflection;
     using System.Windows.Controls;
-    using Settings = DrawPool.Properties.Settings;
+    using Settings = Properties.Settings;
+    using Strings = Logic.Strings;
 
     /// <summary>
     /// The DrawPool plug-in Instance
@@ -12,10 +14,13 @@
     /// <seealso cref="Hearthstone_Deck_Tracker.Plugins.IPlugin" />
     public class DrawPoolPlugin : IPlugin
     {
+        
+        internal DrawPoolInstance drawPoolInstance;
+
         /// <summary>
         /// The <see cref="DrawPoolWindow">DrawPool Window</see> reference
         /// </summary>
-        private DrawPoolWindow win;
+       // private DrawPoolWindow win;
 
         /// <summary>
         /// The author.
@@ -27,13 +32,13 @@
         /// The button text.
         /// </summary>
         /// <value>The button text.</value>
-        public string ButtonText => "Settings";
+        public string ButtonText => Strings.GetLocalized("SettingsLabel");
 
         /// <summary>
         /// The plug-in description.
         /// </summary>
         /// <value>The plug-in description.</value>
-        public string Description => @"Helps to see scoped draw pools from the current cards in your deck.";
+        public string Description => Strings.GetLocalized("PluginDescription");
 
         /// <summary>
         /// Gets or sets the main <see cref="MenuItem">Menu Item</see>.
@@ -45,7 +50,7 @@
         /// The plug-in name.
         /// </summary>
         /// <value>The plug-in name.</value>
-        public string Name => "DrawPool";
+        public string Name => Strings.GetLocalized("PluginName");
 
         /// <summary>
         /// The plugin version.
@@ -78,32 +83,22 @@
             {
                 Settings.Default.IsMinstrelEnabled = Properties.Settings.Default.IsMinstrelEnabled || true;
                 Settings.Default.IsPiperEnabled = Properties.Settings.Default.IsPiperEnabled || false;
-                Settings.Default.Scale = 100;
-                Settings.Default.Opacity = 1.00;
-                Settings.Default.Top = 400;
-                Settings.Default.Left = 300;
+                Settings.Default.DrawPoolScale = 100;
+                Settings.Default.DrawPoolOpacity = 1.00;
+                Settings.Default.DrawPoolTop = 8;
+                Settings.Default.DrawPoolLeft = 8;
                 Settings.Default.Save();
             }
             // Make Sure we save changes
             Settings.Default.PropertyChanged += (sender, e) => Settings.Default.Save();
         }
 
-        /// <summary>
-        /// Called when [button press].
-        /// </summary>
-        public void OnButtonPress()
-        {
-            win.CurrentView = DrawPool.ViewModes.Options;
-            win.Show();
-        }
+        public void OnButtonPress() => SettingsView.Flyout.IsOpen = true;
 
-        /// <summary>
-        /// Called when [load].
-        /// </summary>
         public void OnLoad()
         {
-            win = new DrawPoolWindow();
-            win.InitializeDrawPool();
+           drawPoolInstance = new DrawPoolInstance();
+
             AddMenuItem();
         }
 
@@ -112,14 +107,16 @@
         /// </summary>
         public void OnUnload()
         {
-            win.Close();
+            Settings.Default.Save();
+
+            drawPoolInstance?.Dispose();
+            drawPoolInstance = null;
         }
 
         /// <summary>
         /// Called when [update].
         /// </summary>
         public void OnUpdate()
-        {
-        }
+        { }
     }
 }
