@@ -61,6 +61,15 @@ namespace DrawPool.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide.
+        /// </summary>
+        internal static string HideLabel {
+            get {
+                return ResourceManager.GetString("HideLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lock.
         /// </summary>
         internal static string LockLabel {
@@ -79,7 +88,7 @@ namespace DrawPool.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hide.
+        ///   Looks up a localized string similar to Lock.
         /// </summary>
         internal static string MoveLabel {
             get {

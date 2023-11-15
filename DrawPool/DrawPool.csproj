@@ -60,6 +60,7 @@
     <Compile Include="Controls\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Logic\DrawPoolHelpers.cs" />
     <Compile Include="Logic\ICommonView.cs" />
     <Compile Include="DrawViews\MinstrelView.cs" />
     <Compile Include="DrawPoolInstance.cs" />
@@ -83,6 +84,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\DrawPoolDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MahApps.Metro">

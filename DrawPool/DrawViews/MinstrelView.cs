@@ -1,6 +1,7 @@
 ﻿namespace DrawPool.DrawLogic
 {
     using Controls;
+    using Hearthstone_Deck_Tracker;
     using Hearthstone_Deck_Tracker.API;
     using Hearthstone_Deck_Tracker.Controls;
     using Logic;
@@ -16,8 +17,13 @@
     /// <seealso cref="DrawPool.DrawLogic.ICommonView" />
     public class MinstrelPool : PoolView, ICommonView
     {
+        private HearthstoneTextBlock Chance1;
+        private HearthstoneTextBlock Chance2;
+
         public MinstrelPool()
         {
+            HearthstoneTextBlock Chance1 = (HearthstoneTextBlock)this.FindName("LblDrawChance1");
+            HearthstoneTextBlock Chance2 = (HearthstoneTextBlock)this.FindName("LblDrawChance2");
             SetTitle();
             LoadCards();
             PoolRules();
@@ -25,9 +31,23 @@
 
         public AnimatedCardList AnimatedCardLister() => this.AnimatedCards;
 
+        /// <summary>
+        /// Does the math.
+        /// </summary>
         public void DoMath()
         {
-            // throw new NotImplementedException();
+            Chance1.Text = "0%";
+            Chance2.Text = "0%";
+            if (MinionCount() >= 1)
+            {
+                var gm = GroupedMinion();
+                // Next, figure out our odds
+                Chance1.Text = WriteDrawProbability(gm.First<IGrouping<int, Card>>().First<Card>().Count, MinionCount(), 2);
+                if (gm.Count >= 2)
+                {
+                    Chance2.Text = WriteDrawProbability(gm[1].First<Card>().Count, MinionCount(), 2);
+                }
+            }
         }
 
         public bool HasTriggerCard() => Core.Game.Player.PlayerCardList.FindIndex(c => c.Id.Contains(HearthDb.CardIds.Collectible.Rogue.ElvenMinstrel)) > -1;
@@ -37,22 +57,9 @@
         /// </summary>
         public void LoadCards()
         {
-            Cards = Core.Game.Player.PlayerCardList
-            .Where(c =>
-                c.Type == "Minion" &&
-                (c.Count - c.InHandCount) > 0
-            )
-            .OrderBy(c => c.Cost)
-            .ThenBy(c => c.Count)
-            .ThenBy(c => c.Name)
-            .ToList<Card>();
-            //
+            Cards = DrawPoolHelpers.BuildQueryDeck();
+            DoMath();
             AnimatedCardLister().Update(Cards, true);
-        }
-
-        public void PoolRules()
-        {
-            GameEvents.OnPlayerHandMouseOver.Add(PlayerHandMouseOver);
         }
 
         /// <summary>
@@ -67,7 +74,7 @@
             }
             else
             {
-                if (CheckDeckChanged()) 
+                if (CheckDeckChanged())
                 {
                     LoadCards();
                 }
@@ -77,10 +84,18 @@
 
         public string PoolName() => "MinstrelPoolView";
 
+        public void PoolRules()
+        {
+            GameEvents.OnGameStart.Add(Reset);
+            GameEvents.OnGameEnd.Add(Reset);
+            GameEvents.OnPlayerHandMouseOver.Add(PlayerHandMouseOver);
+        }
+
         public void Reset()
         {
             List<Card> Cards = new List<Card>();
             AnimatedCardLister().Update(null, true);
+            DoMath();
             Visibility = System.Windows.Visibility.Collapsed;
         }
 

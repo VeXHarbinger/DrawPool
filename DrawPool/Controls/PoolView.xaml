@@ -10,6 +10,7 @@
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:props="clr-namespace:DrawPool.Properties"
+    xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes;assembly=HearthstoneDeckTracker"
     d:DesignHeight="80"
     d:DesignWidth="200"
     lex:LocalizeDictionary.DesignCulture="en"
@@ -17,32 +18,86 @@
     lex:ResxLocalizationProvider.DefaultDictionary="Strings"
     Visibility="Visible"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <themes:ThemeManager x:Key="ThemeManager" />
+    </UserControl.Resources>
     <Border
-        Width="196"
+        Name="OuterBorder"
+        Width="Auto"
+        Height="Auto"
         Margin="0,5,0,0"
         Background="#23272a"
         BorderBrush="#141617"
         BorderThickness="2">
+
         <StackPanel>
             <Border
-                Width="189"
+                Name="InnerBorder"
+                Width="Auto"
                 Background="#1d3657"
                 BorderBrush="#141617"
                 BorderThickness="0,0,0,1">
                 <hdt:HearthstoneTextBlock
-                    x:Name="BlockTitleText"
+                    Name="BlockTitleText"
                     MinHeight="5"
-                    Margin="7,2"
+                    Margin="5,2"
                     FontSize="14"
                     Text=""
                     UseLayoutRounding="True"
                     Visibility="Visible" />
             </Border>
             <Grid
-                Grid.Row="0"
-                Margin="5"
+                Name="InnerGrid"
+                Margin="0"
                 ClipToBounds="True">
-                <hdtc:AnimatedCardList x:Name="AnimatedCards" />
+                <hdtc:AnimatedCardList
+                    x:Name="AnimatedCards"
+                    Grid.Row="0"
+                    Width="Auto"
+                    Margin="5.6,2,3,31"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    ScrollViewer.CanContentScroll="False"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    <hdtc:AnimatedCardList.IsHitTestVisible>True</hdtc:AnimatedCardList.IsHitTestVisible>
+                    <hdtc:AnimatedCardList.LayoutTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.65" ScaleY="0.65" />
+                            <SkewTransform />
+                            <RotateTransform />
+                        </TransformGroup>
+                    </hdtc:AnimatedCardList.LayoutTransform>
+                </hdtc:AnimatedCardList>
+                <Canvas
+                    Name="CanvasPlayerChance"
+                    Height="28"
+                    Margin="2,10,2,2"
+                    VerticalAlignment="Bottom"
+                    Background="{Binding CurrentTheme.OverlayTheme.PlayerChanceFrame, Source={StaticResource ThemeManager}}"
+                    Bottom="0">
+                    <hdt:HearthstoneTextBlock
+                        x:Name="LblDrawChance1"
+                        Canvas.Left="40"
+                        Canvas.Top="4"
+                        Width="35"
+                        Height="20"
+                        FontSize="12"
+                        Text="0%"
+                        TextAlignment="Right" />
+                    <hdt:HearthstoneTextBlock
+                        x:Name="LblDrawChance2"
+                        Canvas.Top="4"
+                        Canvas.Right="13"
+                        Width="35"
+                        Height="20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        FontSize="12"
+                        Text="0%"
+                        TextAlignment="Right" />
+
+                </Canvas>
             </Grid>
         </StackPanel>
     </Border>

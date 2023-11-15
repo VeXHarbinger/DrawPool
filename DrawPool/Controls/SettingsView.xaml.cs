@@ -50,33 +50,36 @@
         private void BtnShowHide_Click(object sender, RoutedEventArgs e)
         {
             MinstrelPool poolView = Core.OverlayCanvas.FindChild<MinstrelPool>("MinstrelPoolView");
-            bool wasVisible = poolView.IsVisible;
+            bool wasVisible = poolView.PoolIsVisibile();
 
             if (wasVisible)
             {
-                poolView.Hide();
                 BtnShowHide.Content = Strings.GetLocalized("ShowLabel");
+                poolView.Hide();
             }
             else
             {
-                poolView.Show();
                 BtnShowHide.Content = Strings.GetLocalized("HideLabel");
+                poolView.Show();
             }
         }
 
         private void BtnUnlock_Click(object sender, RoutedEventArgs e)
         {
             MinstrelPool poolView = Core.OverlayCanvas.FindChild<MinstrelPool>("MinstrelPoolView");
-            bool wasSet = poolView.IsWindowDraggable();
+            bool wasSet = poolView.IsPoolWindowDraggable();
             if (wasSet)
             {
+                BtnUnlock.Content = Strings.GetLocalized("UnlockLabel");
+                BtnShowHide.IsEnabled = true;
                 poolView.Pin();
-                BtnUnlock.Content = Strings.GetLocalized("LockLabel");
             }
             else
             {
+                BtnUnlock.Content = Strings.GetLocalized("LockLabel");
+                BtnShowHide.Content = Strings.GetLocalized("HideLabel");
+                BtnShowHide.IsEnabled = false;
                 poolView.UnPin();
-                BtnUnlock.Content = Strings.GetLocalized("MoveLabel");
             }
         }
     }
