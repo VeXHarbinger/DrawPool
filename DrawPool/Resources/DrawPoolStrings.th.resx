@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HideLabel" xml:space="preserve">
-    <value>Skjule</value>
+    <value>ซ่อน</value>
   </data>
   <data name="LockLabel" xml:space="preserve">
-    <value>Låse</value>
+    <value>ล็อค</value>
   </data>
   <data name="MinstrelLabel" xml:space="preserve">
-    <value>Minstrel</value>
+    <value>นักดนตรี</value>
   </data>
   <data name="MoveLabel" xml:space="preserve">
-    <value>Låse</value>
+    <value>ล็อค</value>
   </data>
   <data name="OpacityLabel" xml:space="preserve">
-    <value>Gennemsigtighed</value>
+    <value>ความทึบ</value>
   </data>
   <data name="PiperLabel" xml:space="preserve">
-    <value>Piper</value>
+    <value>ไพเพอร์</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Hjælper med at se rækkevidde draw-puljer fra de nuværende kort i dit bun.</value>
+    <value>ช่วยดูพูลการจับฉลากที่กำหนดขอบเขตจากการ์ดปัจจุบันในสำรับของคุณ</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>DrawPool</value>
   </data>
   <data name="ScaleLabel" xml:space="preserve">
-    <value>vægt</value>
+    <value>มาตราส่วน</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
-    <value>Indstillinger</value>
+    <value>การตั้งค่า</value>
   </data>
   <data name="ShowLabel" xml:space="preserve">
-    <value>At vise</value>
+    <value>แสดง</value>
   </data>
   <data name="UnlockLabel" xml:space="preserve">
-    <value>Lås op</value>
+    <value>ปลดล็อค</value>
   </data>
 </root>

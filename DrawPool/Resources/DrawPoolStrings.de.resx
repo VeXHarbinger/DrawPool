@@ -117,4 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="HideLabel" xml:space="preserve">
+    <value>Verstecken</value>
+  </data>
+  <data name="LockLabel" xml:space="preserve">
+    <value>Sperren</value>
+  </data>
+  <data name="MinstrelLabel" xml:space="preserve">
+    <value>Minnesänger</value>
+  </data>
+  <data name="MoveLabel" xml:space="preserve">
+    <value>Sperren</value>
+  </data>
+  <data name="OpacityLabel" xml:space="preserve">
+    <value>Opazität</value>
+  </data>
+  <data name="PiperLabel" xml:space="preserve">
+    <value>Pfeifer</value>
+  </data>
+  <data name="PluginDescription" xml:space="preserve">
+    <value>Hilft dabei, begrenzte Draw-Pools der aktuellen Karten in Ihrem Deck zu sehen.</value>
+  </data>
+  <data name="PluginName" xml:space="preserve">
+    <value>DrawPool</value>
+  </data>
+  <data name="ScaleLabel" xml:space="preserve">
+    <value>Skala</value>
+  </data>
+  <data name="SettingsLabel" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="ShowLabel" xml:space="preserve">
+    <value>Zeigen</value>
+  </data>
+  <data name="UnlockLabel" xml:space="preserve">
+    <value>Freischalten</value>
+  </data>
 </root>

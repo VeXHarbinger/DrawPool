@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HideLabel" xml:space="preserve">
-    <value>Skjule</value>
+    <value>숨다</value>
   </data>
   <data name="LockLabel" xml:space="preserve">
-    <value>Låse</value>
+    <value>잠그다</value>
   </data>
   <data name="MinstrelLabel" xml:space="preserve">
-    <value>Minstrel</value>
+    <value>시인</value>
   </data>
   <data name="MoveLabel" xml:space="preserve">
-    <value>Låse</value>
+    <value>잠그다</value>
   </data>
   <data name="OpacityLabel" xml:space="preserve">
-    <value>Gennemsigtighed</value>
+    <value>불투명</value>
   </data>
   <data name="PiperLabel" xml:space="preserve">
-    <value>Piper</value>
+    <value>피리 부는 사람</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Hjælper med at se rækkevidde draw-puljer fra de nuværende kort i dit bun.</value>
+    <value>덱에 있는 현재 카드에서 범위가 지정된 드로우 풀을 확인하는 데 도움이 됩니다.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>DrawPool</value>
   </data>
   <data name="ScaleLabel" xml:space="preserve">
-    <value>vægt</value>
+    <value>규모</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
-    <value>Indstillinger</value>
+    <value>설정</value>
   </data>
   <data name="ShowLabel" xml:space="preserve">
-    <value>At vise</value>
+    <value>보여주다</value>
   </data>
   <data name="UnlockLabel" xml:space="preserve">
-    <value>Lås op</value>
+    <value>터놓다</value>
   </data>
 </root>

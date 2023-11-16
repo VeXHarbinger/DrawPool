@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HideLabel" xml:space="preserve">
-    <value>Skjule</value>
+    <value>Ocultar</value>
   </data>
   <data name="LockLabel" xml:space="preserve">
-    <value>Låse</value>
+    <value>Botarlle o ferrollo</value>
   </data>
   <data name="MinstrelLabel" xml:space="preserve">
-    <value>Minstrel</value>
+    <value>Menstrel</value>
   </data>
   <data name="MoveLabel" xml:space="preserve">
-    <value>Låse</value>
+    <value>Botarlle o ferrollo</value>
   </data>
   <data name="OpacityLabel" xml:space="preserve">
-    <value>Gennemsigtighed</value>
+    <value>Opacidade</value>
   </data>
   <data name="PiperLabel" xml:space="preserve">
-    <value>Piper</value>
+    <value>Gaiteiro</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Hjælper med at se rækkevidde draw-puljer fra de nuværende kort i dit bun.</value>
+    <value>Axuda a ver os grupos de sorteo con alcance das cartas actuais do teu mazo.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
-    <value>DrawPool</value>
+    <value>Draw Pool</value>
   </data>
   <data name="ScaleLabel" xml:space="preserve">
-    <value>vægt</value>
+    <value>Escala</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
-    <value>Indstillinger</value>
+    <value>Configuración</value>
   </data>
   <data name="ShowLabel" xml:space="preserve">
-    <value>At vise</value>
+    <value>Mostrar</value>
   </data>
   <data name="UnlockLabel" xml:space="preserve">
-    <value>Lås op</value>
+    <value>Desbloquear</value>
   </data>
 </root>

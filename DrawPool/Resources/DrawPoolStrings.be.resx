@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HideLabel" xml:space="preserve">
-    <value>Skjule</value>
+    <value>Схаваць</value>
   </data>
   <data name="LockLabel" xml:space="preserve">
-    <value>Låse</value>
+    <value>Замак</value>
   </data>
   <data name="MinstrelLabel" xml:space="preserve">
-    <value>Minstrel</value>
+    <value>Менестрэль</value>
   </data>
   <data name="MoveLabel" xml:space="preserve">
-    <value>Låse</value>
+    <value>Замак</value>
   </data>
   <data name="OpacityLabel" xml:space="preserve">
-    <value>Gennemsigtighed</value>
+    <value>Непразрыстасць</value>
   </data>
   <data name="PiperLabel" xml:space="preserve">
-    <value>Piper</value>
+    <value>Дудар</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Hjælper med at se rækkevidde draw-puljer fra de nuværende kort i dit bun.</value>
+    <value>Дапамагае ўбачыць пул разборак з бягучымі картамі ў вашай калодзе.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>DrawPool</value>
   </data>
   <data name="ScaleLabel" xml:space="preserve">
-    <value>vægt</value>
+    <value>Маштаб</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
-    <value>Indstillinger</value>
+    <value>Налады</value>
   </data>
   <data name="ShowLabel" xml:space="preserve">
-    <value>At vise</value>
+    <value>Паказаць</value>
   </data>
   <data name="UnlockLabel" xml:space="preserve">
-    <value>Lås op</value>
+    <value>Разблакіраваць</value>
   </data>
 </root>

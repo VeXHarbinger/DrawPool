@@ -103,10 +103,77 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\DrawPoolStrings.af.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ar.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.az.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.be.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.bg.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.bn.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ca.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.cs.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.cy.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.da.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.de.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.el.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.eo.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.es.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.et.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.eu.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.fa.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.fi.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.fr.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ga.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.gl.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.gu.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.hi.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.hr.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ht.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.hu.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.hy.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.id.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.is.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.it.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.iw.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ja.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ka.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.km.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.kn.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ko.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.la.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.lo.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.lt.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.lv.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.mk.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ms.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.mt.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.nl.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.no.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.pl.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.pt-BR.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.pt-PT.resx" />
     <EmbeddedResource Include="Resources\DrawPoolStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DrawPoolStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ro.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ru.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.sk.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.sl.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.sq.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.sr.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.sv.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.sw.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ta.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.te.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.th.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.tl.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.tr.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.uk.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.ur.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.vi.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.yi.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.zh-CN.resx" />
+    <EmbeddedResource Include="Resources\DrawPoolStrings.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

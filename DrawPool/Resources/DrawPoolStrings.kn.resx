@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HideLabel" xml:space="preserve">
-    <value>Skjule</value>
+    <value>ಮರೆಮಾಡಿ</value>
   </data>
   <data name="LockLabel" xml:space="preserve">
-    <value>Låse</value>
+    <value>ಲಾಕ್ ಮಾಡಿ</value>
   </data>
   <data name="MinstrelLabel" xml:space="preserve">
-    <value>Minstrel</value>
+    <value>ಮಿನ್ಸ್ಟ್ರೆಲ್</value>
   </data>
   <data name="MoveLabel" xml:space="preserve">
-    <value>Låse</value>
+    <value>ಲಾಕ್ ಮಾಡಿ</value>
   </data>
   <data name="OpacityLabel" xml:space="preserve">
-    <value>Gennemsigtighed</value>
+    <value>ಅಪಾರದರ್ಶಕತೆ</value>
   </data>
   <data name="PiperLabel" xml:space="preserve">
-    <value>Piper</value>
+    <value>ಪೈಪರ್</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Hjælper med at se rækkevidde draw-puljer fra de nuværende kort i dit bun.</value>
+    <value>ನಿಮ್ಮ ಡೆಕ್‌ನಲ್ಲಿರುವ ಪ್ರಸ್ತುತ ಕಾರ್ಡ್‌ಗಳಿಂದ ಸ್ಕೋಪ್ಡ್ ಡ್ರಾ ಪೂಲ್‌ಗಳನ್ನು ನೋಡಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
-    <value>DrawPool</value>
+    <value>ಡ್ರಾಪೂಲ್</value>
   </data>
   <data name="ScaleLabel" xml:space="preserve">
-    <value>vægt</value>
+    <value>ಸ್ಕೇಲ್</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
-    <value>Indstillinger</value>
+    <value>ಸಂಯೋಜನೆಗಳು</value>
   </data>
   <data name="ShowLabel" xml:space="preserve">
-    <value>At vise</value>
+    <value>ತೋರಿಸು</value>
   </data>
   <data name="UnlockLabel" xml:space="preserve">
-    <value>Lås op</value>
+    <value>ಅನ್ಲಾಕ್ ಮಾಡಿ</value>
   </data>
 </root>
