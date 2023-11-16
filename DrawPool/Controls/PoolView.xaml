@@ -41,7 +41,7 @@
                     Name="BlockTitleText"
                     MinHeight="5"
                     Margin="5,2"
-                    FontSize="14"
+                    FontSize="12"
                     Text=""
                     UseLayoutRounding="True"
                     Visibility="Visible" />
@@ -51,7 +51,7 @@
                 Margin="0"
                 ClipToBounds="True">
                 <hdtc:AnimatedCardList
-                    x:Name="AnimatedCards"
+                    Name="AnimatedCards"
                     Grid.Row="0"
                     Width="Auto"
                     Margin="5.6,2,3,31"
