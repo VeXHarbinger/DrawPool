@@ -11,8 +11,12 @@
     lex:ResxLocalizationProvider.DefaultAssembly="DrawPool"
     lex:ResxLocalizationProvider.DefaultDictionary="Strings"
     BorderThickness="1"
+    VerticalScrollBarVisibility="Hidden"
     mc:Ignorable="d">
-    <StackPanel Width="400">
+    <StackPanel
+        Width="400"
+        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+        ScrollViewer.VerticalScrollBarVisibility="Hidden">
         <StackPanel.Resources>
             <Style x:Key="TitleStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="18" />
@@ -76,57 +80,47 @@
                 <Setter Property="Margin" Value="0,0,10,0" />
             </Style>
         </StackPanel.Resources>
-        <Button
-            Name="BtnUnlock"
-            Width="150"
-            Click="BtnUnlock_Click"
-            Content="{lex:Loc UnlockLabel}" />
-        <Button
-            Name="BtnShowHide"
-            Width="150"
-            Click="BtnShowHide_Click"
-            Content="{lex:Loc ShowLabel}" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Name="BtnUnlock"
+                Grid.Row="0"
+                Grid.Column="0"
+                Width="150"
+                Margin="3,6,3,6"
+                Click="BtnUnlock_Click"
+                Content="{lex:Loc UnlockLabel}" />
+            <Button
+                Name="BtnShowHide"
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="150"
+                Margin="3,6,3,6"
+                Click="BtnShowHide_Click"
+                Content="{lex:Loc ShowLabel}" />
 
 
-        <DockPanel Style="{StaticResource SliderPanelStyle}">
-            <Slider
-                x:Name="DrawPoolOpacity"
-                DockPanel.Dock="Right"
-                IsEnabled="False"
-                Style="{StaticResource OpacitySliderStyle}"
-                Value="{Binding DrawPoolOpacity, Source={x:Static props:Settings.Default}}" />
-            <Label
-                VerticalAlignment="Center"
-                Content="{lex:Loc OpacityLabel}"
-                DockPanel.Dock="Left" />
-            <TextBlock
-                DockPanel.Dock="Right"
-                Style="{StaticResource SliderTextStyle}"
-                Text="{Binding DrawPoolOpacity, Source={x:Static props:Settings.Default}, StringFormat={}{0}%}" />
-        </DockPanel>
-
-        <DockPanel Style="{StaticResource SliderPanelStyle}">
-            <Slider
-                x:Name="Scale"
-                DockPanel.Dock="Right"
-                IsEnabled="False"
-                Style="{StaticResource ScaleSliderStyle}"
-                Value="{Binding DrawPoolScale, Source={x:Static props:Settings.Default}}" />
-            <Label
-                VerticalAlignment="Center"
-                Content="{lex:Loc ScaleLabel}"
-                DockPanel.Dock="Left" />
-            <TextBlock
-                DockPanel.Dock="Right"
-                Style="{StaticResource SliderTextStyle}"
-                Text="{Binding DrawPoolScale, Source={x:Static props:Settings.Default}, StringFormat={}{0}%}" />
-        </DockPanel>
+        </Grid>
 
         <mah:ToggleSwitch
             Content="{lex:Loc MinstrelLabel}"
             IsChecked="{Binding IsMinstrelEnabled, IsAsync=True, Source={x:Static props:Settings.Default}}"
             Style="{StaticResource TitleToggleStyle}"
             ToolTip="{lex:Loc MinstrelLabel}" />
+
+        <mah:ToggleSwitch
+            Content="{lex:Loc PiperLabel}"
+            IsChecked="{Binding IsPiperEnabled, IsAsync=True, Source={x:Static props:Settings.Default}}"
+            IsEnabled="False"
+            Style="{StaticResource TitleToggleStyle}"
+            ToolTip="{lex:Loc PiperLabel}" />
+
 
     </StackPanel>
 </ScrollViewer>

@@ -31,12 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HearthDb">
+    <Reference Include="HearthDb, Version=28.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\HearthDb.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HearthstoneDeckTracker">
+    <Reference Include="HearthstoneDeckTracker, Version=1.23.1.6393, Culture=neutral, processorArchitecture=x86">
       <HintPath>lib\HearthstoneDeckTracker.exe</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -62,7 +64,7 @@
     </Compile>
     <Compile Include="Logic\DrawPoolHelpers.cs" />
     <Compile Include="Logic\ICommonView.cs" />
-    <Compile Include="DrawViews\MinstrelView.cs" />
+    <Compile Include="DrawViews\MinstrelPool.cs" />
     <Compile Include="DrawPoolInstance.cs" />
     <Compile Include="DrawPoolPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,12 +73,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Strings.Designer.cs">
+    <Compile Include="Resources\DrawPoolStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
+      <DependentUpon>DrawPoolStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Logic\Strings.cs" />
+    <Compile Include="Logic\StringTools.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -87,6 +89,9 @@
     <None Include="Resources\DrawPoolDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ControlzEx">
+      <Version>3.0.2.4</Version>
+    </PackageReference>
     <PackageReference Include="MahApps.Metro">
       <Version>1.6.5</Version>
     </PackageReference>
@@ -98,9 +103,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Strings.resx">
+    <EmbeddedResource Include="Resources\DrawPoolStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <LastGenOutput>DrawPoolStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
@@ -121,7 +126,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Debug (
-   copy "$(TargetDir)$(ProjectName).*" "C:\Users\alexp\AppData\Roaming\HearthstoneDeckTracker\Plugins" /y 
+   copy "$(TargetDir)$(ProjectName).dll" "C:\Users\alexp\AppData\Roaming\HearthstoneDeckTracker\Plugins" /y 
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>

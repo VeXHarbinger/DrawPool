@@ -8,7 +8,7 @@
     using System.Windows;
     using System.Windows.Controls;
     using Core = Hearthstone_Deck_Tracker.API.Core;
-    using Strings = Logic.Strings;
+    using Strings = Logic.StringTools;
 
     /// <summary>
     /// Interaction logic for SettingsView.xaml

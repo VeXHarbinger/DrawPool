@@ -1,15 +1,13 @@
 ﻿namespace DrawPool.Controls
 {
-    using DrawPool.Properties;
     using Hearthstone_Deck_Tracker;
+    using Hearthstone_Deck_Tracker.Controls;
     using Logic;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Input;
-    using System.Windows.Media;
     using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
     using Core = Hearthstone_Deck_Tracker.API.Core;
 
@@ -27,8 +25,6 @@
         /// </summary>
         private bool isDraggable = false;
 
-        private bool panelSelected = false;
-
         internal Point mousePosition;
 
         /// <summary>
@@ -36,12 +32,10 @@
         /// </summary>
         public List<Card> Cards;
 
-        /// <summary>
-        /// The Hearthstone Text Block With the view's styled Title within
-        /// </summary>
-        public HearthstoneTextBlock winTitleLabel;
-
-        private double ScreenRatio => (4.0 / 3.0) / (Core.OverlayCanvas.Width / Core.OverlayCanvas.Height);
+        protected AnimatedCardList AnimatedCardLister => this.AnimatedCards;
+        protected HearthstoneTextBlock Chance1 => (HearthstoneTextBlock)this.FindName("LblDrawChance1");
+        protected HearthstoneTextBlock Chance2 => (HearthstoneTextBlock)this.FindName("LblDrawChance2");
+        protected double ScreenRatio => (4.0 / 3.0) / (Core.OverlayCanvas.Width / Core.OverlayCanvas.Height);
 
         /// <summary>
         /// Gets the deck Hash Code.
@@ -49,55 +43,10 @@
         /// <value>The deck HashCode.</value>
         public int DeckHash => Core.Game.Player.Deck.GetHashCode();
 
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            mousePosition = e.GetPosition(Parent as Window);
-            this.CaptureMouse();
-        }
-
-        private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (this.IsMouseCaptured)
-            {
-                this.ReleaseMouseCapture();
-            }
-        }
-
-        private void Grid_MouseMove(object sender, MouseEventArgs e)
-        {
-            Vector diff = e.GetPosition(Parent as Window) - mousePosition;
-            if (this.IsMouseCaptured)
-            {
-                (RenderTransform as TranslateTransform).X = diff.X;
-                (RenderTransform as TranslateTransform).Y = diff.Y;
-            }
-        }
-
-        private void MouseInputOnLmbDown(object sender, MouseButtonEventArgs e)
-        {
-            var _mousePos = User32.GetMousePos();
-            var p = new Point(_mousePos.X, _mousePos.Y);
-            if (IsPoolWindowDraggable())
-            {
-                panelSelected = true;
-            }
-            else
-            {
-                panelSelected = false;
-            }
-        }
-
-        private void MouseInputOnLmbUp(object sender, MouseButtonEventArgs e)
-        {
-            var _mousePos = User32.GetMousePos();
-            var p = Core.OverlayCanvas.PointFromScreen(new Point(_mousePos.X, _mousePos.Y));
-            if (IsPoolWindowDraggable())
-            {
-                Settings.Default.DrawPoolTop = p.Y;
-                Settings.Default.DrawPoolLeft = p.X;
-            }
-            panelSelected = false;
-        }
+        /// <summary>
+        /// The Hearthstone Text Block With the view's styled Title within
+        /// </summary>
+        public HearthstoneTextBlock poolTitleLabel => (HearthstoneTextBlock)this.FindName("BlockTitleText");
 
         /// <summary>
         /// Returns the list of Minions Grouped by their Counts, for statistical purposes.
@@ -194,8 +143,7 @@
 
         public void SetTitle()
         {
-            HearthstoneTextBlock htb = (HearthstoneTextBlock)this.FindName("BlockTitleText");
-            htb.Text = Strings.GetLocalized("MinstrelLabel") + " " + Strings.GetLocalized("PluginName");
+            this.poolTitleLabel.Text = StringTools.GetLocalized("MinstrelLabel") + " " + StringTools.GetLocalized("PluginName");
         }
 
         /// <summary>
@@ -210,13 +158,6 @@
         {
             isDraggable = true;
             Show();
-
-            //this.MouseLeftButtonDown += MouseInputOnLmbDown;
-            //this.MouseLeftButtonUp += MouseInputOnLmbUp;
-            //_mouseInput = new User32.MouseInput();
-            //_mouseInput.LmbDown += MouseInputOnLmbDown;
-            //_mouseInput.LmbUp += MouseInputOnLmbUp;
-            //_mouseInput.MouseMoved += MouseInputOnMouseMoved;
         }
 
         public bool Update(Card card)
