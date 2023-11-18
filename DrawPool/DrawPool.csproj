@@ -62,6 +62,7 @@
     <Compile Include="Controls\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Logic\ControlMovementManager.cs" />
     <Compile Include="Logic\DrawPoolHelpers.cs" />
     <Compile Include="Logic\ICommonView.cs" />
     <Compile Include="DrawViews\MinstrelPool.cs" />

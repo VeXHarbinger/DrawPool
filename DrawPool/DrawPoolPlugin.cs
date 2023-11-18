@@ -14,7 +14,7 @@
     /// <seealso cref="Hearthstone_Deck_Tracker.Plugins.IPlugin" />
     public class DrawPoolPlugin : IPlugin
     {
-        internal DrawPoolInstance drawPoolInstance;
+        public DrawPoolInstance drawPoolInstance;
 
         /// <summary>
         /// The author.

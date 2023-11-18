@@ -1,6 +1,7 @@
 ﻿namespace DrawPool.Controls
 {
     using DrawPool.DrawLogic;
+    using DrawPool.Logic;
     using MahApps.Metro.Controls;
     using System;
     using System.Collections.Generic;
@@ -16,10 +17,19 @@
     public partial class SettingsView : ScrollViewer
     {
         private static Flyout _flyout;
+        private ControlMovementManager MoveManager;
 
         public SettingsView()
         {
             InitializeComponent();
+            this.BtnUnlock.Content = StringTools.GetLocalized("UnlockLabel");
+            this.BtnShowHide.Content = StringTools.GetLocalized("BtnShowHide");
+
+            this.MinstrelToggleSwitch.Content = StringTools.GetLocalized("MinstrelLabel");
+            this.PiperToggleSwitch.Content = StringTools.GetLocalized("PiperLabel");
+
+            MinstrelPool poolView = Core.OverlayCanvas.FindChild<MinstrelPool>("MinstrelPoolView");
+            MoveManager = new ControlMovementManager(poolView, SettingsView.IsUnlocked);
         }
 
         public static Flyout Flyout
@@ -34,6 +44,7 @@
             }
         }
 
+        public static bool IsUnlocked { get; private set; }
         public IEnumerable<Orientation> OrientationTypes => Enum.GetValues(typeof(Orientation)).Cast<Orientation>();
 
         private static Flyout CreateSettingsFlyout()
@@ -66,21 +77,23 @@
 
         private void BtnUnlock_Click(object sender, RoutedEventArgs e)
         {
-            MinstrelPool poolView = Core.OverlayCanvas.FindChild<MinstrelPool>("MinstrelPoolView");
-            bool wasSet = poolView.IsPoolWindowDraggable();
-            if (wasSet)
+            //MinstrelPool poolView = Core.OverlayCanvas.FindChild<MinstrelPool>("MinstrelPoolView");
+            //bool wasSet = poolView.IsPoolWindowDraggable();
+
+            if (IsUnlocked)
             {
                 BtnUnlock.Content = Strings.GetLocalized("UnlockLabel");
                 BtnShowHide.IsEnabled = true;
-                poolView.Pin();
+                //poolView.Pin();
             }
             else
             {
                 BtnUnlock.Content = Strings.GetLocalized("LockLabel");
                 BtnShowHide.Content = Strings.GetLocalized("HideLabel");
                 BtnShowHide.IsEnabled = false;
-                poolView.UnPin();
+                //poolView.UnPin();
             }
+            IsUnlocked = MoveManager.ToggleLockState();
         }
     }
 }

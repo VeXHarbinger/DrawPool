@@ -1,7 +1,6 @@
 ﻿namespace DrawPool.DrawLogic
 {
     using Controls;
-    using Hearthstone_Deck_Tracker;
     using Hearthstone_Deck_Tracker.API;
     using Hearthstone_Deck_Tracker.Controls;
     using Logic;
@@ -24,8 +23,6 @@
             PoolRules();
         }
 
-
-
         /// <summary>
         /// Does the math.
         /// </summary>
@@ -37,10 +34,18 @@
             {
                 var gm = GroupedMinion();
                 // Next, figure out our odds
-                this.Chance1.Text = WriteDrawProbability(gm.First<IGrouping<int, Card>>().First<Card>().Count, MinionCount(), 2);
+                this.Chance1.Text = WriteDrawProbability(
+                    gm.First<IGrouping<int, Card>>().
+                    First<Card>().Count, 
+                    MinionCount(), 
+                    2
+                );
                 if (gm.Count >= 2)
                 {
-                    this.Chance2.Text = WriteDrawProbability(gm[1].First<Card>().Count, MinionCount(), 2);
+                    this.Chance2.Text = WriteDrawProbability(
+                        gm[1].First<Card>().Count, 
+                        MinionCount(), 
+                        2);
                 }
             }
         }
@@ -90,12 +95,13 @@
             GameEvents.OnGameStart.Add(Reset);
             GameEvents.OnGameEnd.Add(Reset);
             GameEvents.OnPlayerHandMouseOver.Add(PlayerHandMouseOver);
+            GameEvents.OnMouseOverOff.Add(OnMouseOff);
         }
 
         public void Reset()
         {
             List<Card> Cards = new List<Card>();
-            AnimatedCardLister.Update(null, true);
+            AnimatedCardLister.Update(Cards, true);
             this.Chance1.Text = "0%";
             this.Chance2.Text = "0%";
             Visibility = System.Windows.Visibility.Collapsed;

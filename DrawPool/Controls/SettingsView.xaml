@@ -93,7 +93,7 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Width="150"
-                Margin="3,6,3,6"
+                Margin="24,6,26,6"
                 Click="BtnUnlock_Click"
                 Content="{lex:Loc UnlockLabel}" />
             <Button
@@ -104,23 +104,21 @@
                 Margin="3,6,3,6"
                 Click="BtnShowHide_Click"
                 Content="{lex:Loc ShowLabel}" />
-
-
         </Grid>
 
         <mah:ToggleSwitch
+            Name="MinstrelToggleSwitch"
             Content="{lex:Loc MinstrelLabel}"
             IsChecked="{Binding IsMinstrelEnabled, IsAsync=True, Source={x:Static props:Settings.Default}}"
             Style="{StaticResource TitleToggleStyle}"
             ToolTip="{lex:Loc MinstrelLabel}" />
 
         <mah:ToggleSwitch
+            Name="PiperToggleSwitch"
             Content="{lex:Loc PiperLabel}"
             IsChecked="{Binding IsPiperEnabled, IsAsync=True, Source={x:Static props:Settings.Default}}"
             IsEnabled="False"
             Style="{StaticResource TitleToggleStyle}"
             ToolTip="{lex:Loc PiperLabel}" />
-
-
     </StackPanel>
 </ScrollViewer>

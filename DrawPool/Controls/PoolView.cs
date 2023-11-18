@@ -98,10 +98,10 @@
         /// <param name="draw">The number of cards to draw.</param>
         /// <param name="dec">The decimal place to round to.</param>
         /// <returns>The Draw probability.</returns>
-        public Double DrawProbability(int poolsize, int copies = 1, int draw = 1, int dec = 0)
+        public Double DrawProbability(int poolsize, int copies = 1, int draw = 1, int dec = 1)
         {
-            return Math.Round(
-                Helper.DrawProbability(copies, poolsize, draw) * 100, dec);
+            //double dp = Helper.DrawProbability(copies, poolsize, draw);
+            return Math.Round(Helper.DrawProbability(copies, poolsize, draw) * 100, dec);
         }
 
         /// <summary>

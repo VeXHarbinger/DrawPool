@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
-    using Core = Hearthstone_Deck_Tracker.API.Core;
 
     /// <summary>
     /// Available Card(s) Helper(s)
@@ -16,20 +15,21 @@
         /// <returns>The scoped list of <see cref="Card">Cards</see></returns>
         public static List<Card> BuildQueryDeck()
         {
-            var playerDeck = Hearthstone_Deck_Tracker.API.Core.Game.Player
-                 .PlayerCardList
-                 .Where(c =>
+
+            var pd = Hearthstone_Deck_Tracker.API.Core.Game.Player.PlayerCardList.ToList<Card>();
+
+            pd = pd.FixCreatedCards();
+            pd = pd.FixDuplicateCards();
+            pd = pd.Where(c =>
                      c.Type == "Minion" &&
-                     (c.Count - c.InHandCount) > 0
+                     (c.InHandCount <= c.Count) &&
+                     (c.Count - c.InHandCount > 0)
                  )
                  .OrderBy(c => c.Cost)
                  .ThenBy(c => c.Count)
                  .ThenBy(c => c.Name)
-                 .ToList<Card>()
-                 .FixCreatedCards()
-                 .FixDuplicateCards();
-
-            return playerDeck;
+                 .ToList<Card>();
+            return pd;
         }
 
         /// <summary>
