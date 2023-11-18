@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
-    using Core = Hearthstone_Deck_Tracker.API.Core;
 
     /// <summary>
     /// Available Card(s) Helper(s)

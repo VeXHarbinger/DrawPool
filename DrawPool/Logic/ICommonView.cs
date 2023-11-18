@@ -22,8 +22,6 @@
         /// </summary>
         void LoadCards();
 
-        void PoolRules();
-
         /// <summary>
         /// When the Player mouses over a <see cref="Card" /> in his hand.
         /// </summary>
@@ -35,6 +33,8 @@
         /// </summary>
         /// <returns></returns>
         string PoolName();
+
+        void PoolRules();
 
         /// <summary>
         /// Resets this instance's <see cref="Card" /> lists.

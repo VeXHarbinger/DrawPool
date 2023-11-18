@@ -1,6 +1,7 @@
 ﻿namespace DrawPool.Controls
 {
     using DrawPool.DrawLogic;
+    using DrawPool.Logic;
     using MahApps.Metro.Controls;
     using System;
     using System.Collections.Generic;
@@ -20,6 +21,11 @@
         public SettingsView()
         {
             InitializeComponent();
+            this.BtnUnlock.Content = StringTools.GetLocalized("UnlockLabel");
+            this.BtnShowHide.Content = StringTools.GetLocalized("BtnShowHide");
+            
+            this.MinstrelToggleSwitch.Content = StringTools.GetLocalized("MinstrelLabel");
+            this.PiperToggleSwitch.Content = StringTools.GetLocalized("PiperLabel");
         }
 
         public static Flyout Flyout

@@ -1,7 +1,6 @@
 ﻿namespace DrawPool.DrawLogic
 {
     using Controls;
-    using Hearthstone_Deck_Tracker;
     using Hearthstone_Deck_Tracker.API;
     using Hearthstone_Deck_Tracker.Controls;
     using Logic;
@@ -23,8 +22,6 @@
             LoadCards();
             PoolRules();
         }
-
-
 
         /// <summary>
         /// Does the math.

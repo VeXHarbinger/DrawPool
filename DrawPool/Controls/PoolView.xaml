@@ -96,7 +96,6 @@
                         FontSize="12"
                         Text="0%"
                         TextAlignment="Right" />
-
                 </Canvas>
             </Grid>
         </StackPanel>
