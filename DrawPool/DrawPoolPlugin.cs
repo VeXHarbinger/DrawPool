@@ -1,11 +1,13 @@
 ﻿namespace DrawPool
 {
+    using DrawPool.DrawViews;
     using DrawPool.Logic;
     using global::DrawPool.Controls;
     using Hearthstone_Deck_Tracker.Plugins;
     using System;
     using System.Reflection;
     using System.Windows.Controls;
+    using System.Windows.Input;
     using Settings = Properties.Settings;
 
     /// <summary>
@@ -14,7 +16,7 @@
     /// <seealso cref="Hearthstone_Deck_Tracker.Plugins.IPlugin" />
     public class DrawPoolPlugin : IPlugin
     {
-        public DrawPoolInstance drawPoolInstance;
+        public PluginInstance pluginInstance;
 
         /// <summary>
         /// The author.
@@ -79,10 +81,11 @@
                 Settings.Default.IsPiperEnabled = Properties.Settings.Default.IsPiperEnabled || false;
                 Settings.Default.DrawPoolScale = 100;
                 Settings.Default.DrawPoolOpacity = 1.00;
-                Settings.Default.DrawPoolTop = 8;
-                Settings.Default.DrawPoolLeft = 8;
+                Settings.Default.DrawPoolTop = 10;
+                Settings.Default.DrawPoolLeft = 10;
                 Settings.Default.Save();
             }
+
             // Make Sure we save changes
             Settings.Default.PropertyChanged += (sender, e) => Settings.Default.Save();
         }
@@ -91,8 +94,7 @@
 
         public void OnLoad()
         {
-            drawPoolInstance = new DrawPoolInstance();
-
+            pluginInstance = new PluginInstance();
             AddMenuItem();
         }
 
@@ -103,8 +105,8 @@
         {
             Settings.Default.Save();
 
-            drawPoolInstance?.Dispose();
-            drawPoolInstance = null;
+            pluginInstance?.CleanUp();
+            pluginInstance = null;
         }
 
         /// <summary>

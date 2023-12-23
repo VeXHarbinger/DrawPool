@@ -62,12 +62,13 @@
     <Compile Include="Controls\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Logic\ControlMovementManager.cs" />
+    <Compile Include="Logic\InputMoveManager.cs" />
+    <Compile Include="Logic\PluginManager.cs" />
     <Compile Include="Logic\DrawPoolHelpers.cs" />
     <Compile Include="Logic\ICommonView.cs" />
     <Compile Include="DrawViews\MinstrelPool.cs" />
-    <Compile Include="DrawPoolInstance.cs" />
     <Compile Include="DrawPoolPlugin.cs" />
+    <Compile Include="PluginInstance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

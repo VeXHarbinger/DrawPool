@@ -9,7 +9,7 @@
     xmlns:props="clr-namespace:DrawPool.Properties"
     lex:LocalizeDictionary.DesignCulture="en"
     lex:ResxLocalizationProvider.DefaultAssembly="DrawPool"
-    lex:ResxLocalizationProvider.DefaultDictionary="Strings"
+    lex:ResxLocalizationProvider.DefaultDictionary="DrawPoolStringTools"
     BorderThickness="1"
     VerticalScrollBarVisibility="Hidden"
     mc:Ignorable="d">
@@ -95,7 +95,7 @@
                 Width="150"
                 Margin="24,6,26,6"
                 Click="BtnUnlock_Click"
-                Content="{lex:Loc UnlockLabel}" />
+                Content="Unlock" />
             <Button
                 Name="BtnShowHide"
                 Grid.Row="0"
@@ -103,19 +103,19 @@
                 Width="150"
                 Margin="3,6,3,6"
                 Click="BtnShowHide_Click"
-                Content="{lex:Loc ShowLabel}" />
+                Content="Show" />
         </Grid>
 
         <mah:ToggleSwitch
             Name="MinstrelToggleSwitch"
-            Content="{lex:Loc MinstrelLabel}"
+            Content="Minstrel"
             IsChecked="{Binding IsMinstrelEnabled, IsAsync=True, Source={x:Static props:Settings.Default}}"
             Style="{StaticResource TitleToggleStyle}"
-            ToolTip="{lex:Loc MinstrelLabel}" />
+            ToolTip="Minstrel" />
 
         <mah:ToggleSwitch
             Name="PiperToggleSwitch"
-            Content="{lex:Loc PiperLabel}"
+            Content="Piper"
             IsChecked="{Binding IsPiperEnabled, IsAsync=True, Source={x:Static props:Settings.Default}}"
             IsEnabled="False"
             Style="{StaticResource TitleToggleStyle}"

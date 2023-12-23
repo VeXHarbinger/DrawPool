@@ -9,7 +9,6 @@
     using System.Windows;
     using System.Windows.Controls;
     using Core = Hearthstone_Deck_Tracker.API.Core;
-    using Strings = Logic.StringTools;
 
     /// <summary>
     /// Interaction logic for SettingsView.xaml
@@ -17,19 +16,10 @@
     public partial class SettingsView : ScrollViewer
     {
         private static Flyout _flyout;
-        private ControlMovementManager MoveManager;
 
         public SettingsView()
         {
             InitializeComponent();
-            this.BtnUnlock.Content = StringTools.GetLocalized("UnlockLabel");
-            this.BtnShowHide.Content = StringTools.GetLocalized("BtnShowHide");
-
-            this.MinstrelToggleSwitch.Content = StringTools.GetLocalized("MinstrelLabel");
-            this.PiperToggleSwitch.Content = StringTools.GetLocalized("PiperLabel");
-
-            MinstrelPool poolView = Core.OverlayCanvas.FindChild<MinstrelPool>("MinstrelPoolView");
-            MoveManager = new ControlMovementManager(poolView, SettingsView.IsUnlocked);
         }
 
         public static Flyout Flyout
@@ -52,7 +42,7 @@
             var settings = new Flyout();
             settings.Position = Position.Left;
             Panel.SetZIndex(settings, 100);
-            settings.Header = Strings.GetLocalized("PluginName") + " " + Strings.GetLocalized("SettingsLabel");
+            settings.Header = StringTools.GetLocalized("PluginName") + " " + StringTools.GetLocalized("SettingsLabel");
             settings.Content = new SettingsView();
             Core.MainWindow.Flyouts.Items.Add(settings);
             return settings;
@@ -61,39 +51,42 @@
         private void BtnShowHide_Click(object sender, RoutedEventArgs e)
         {
             MinstrelPool poolView = Core.OverlayCanvas.FindChild<MinstrelPool>("MinstrelPoolView");
-            bool wasVisible = poolView.PoolIsVisibile();
+            bool wasVisible = poolView.PoolIsVisibile() || false;
 
             if (wasVisible)
             {
-                BtnShowHide.Content = Strings.GetLocalized("ShowLabel");
+                BtnShowHide.Content = StringTools.GetLocalized("ShowLabel");
                 poolView.Hide();
             }
             else
             {
-                BtnShowHide.Content = Strings.GetLocalized("HideLabel");
+                BtnShowHide.Content = StringTools.GetLocalized("HideLabel");
                 poolView.Show();
             }
         }
 
         private void BtnUnlock_Click(object sender, RoutedEventArgs e)
         {
-            //MinstrelPool poolView = Core.OverlayCanvas.FindChild<MinstrelPool>("MinstrelPoolView");
-            //bool wasSet = poolView.IsPoolWindowDraggable();
-
-            if (IsUnlocked)
+            IsUnlocked = PluginInstance.inputMoveManager.Toggle();
+            if (!IsUnlocked)
             {
-                BtnUnlock.Content = Strings.GetLocalized("UnlockLabel");
+                BtnUnlock.Content = StringTools.GetLocalized("UnlockLabel");
                 BtnShowHide.IsEnabled = true;
-                //poolView.Pin();
             }
             else
             {
-                BtnUnlock.Content = Strings.GetLocalized("LockLabel");
-                BtnShowHide.Content = Strings.GetLocalized("HideLabel");
+                BtnUnlock.Content = StringTools.GetLocalized("LockLabel");
+                BtnShowHide.Content = StringTools.GetLocalized("HideLabel");
                 BtnShowHide.IsEnabled = false;
-                //poolView.UnPin();
             }
-            IsUnlocked = MoveManager.ToggleLockState();
+        }
+
+        private void Translate(Flyout settings)
+        {
+            BtnUnlock.Content = StringTools.GetLocalized("UnlockLabel");
+            BtnShowHide.Content = StringTools.GetLocalized("ShowLabel");
+
+            //MinstrelToggleSwitch MinstrelLabel
         }
     }
 }

@@ -11,7 +11,7 @@
     using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
     using Core = Hearthstone_Deck_Tracker.API.Core;
 
-    public partial class PoolView : UserControl
+    public partial class PoolView : StackPanel
     {
         private User32.MouseInput _mouseInput;
 

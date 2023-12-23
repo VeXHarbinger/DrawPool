@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<StackPanel
     x:Class="DrawPool.Controls.PoolView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -15,12 +15,12 @@
     d:DesignWidth="200"
     lex:LocalizeDictionary.DesignCulture="en"
     lex:ResxLocalizationProvider.DefaultAssembly="DrawPool"
-    lex:ResxLocalizationProvider.DefaultDictionary="Strings"
+    lex:ResxLocalizationProvider.DefaultDictionary="DrawPool.Logic.StringTools"
     Visibility="Visible"
     mc:Ignorable="d">
-    <UserControl.Resources>
+    <StackPanel.Resources>
         <themes:ThemeManager x:Key="ThemeManager" />
-    </UserControl.Resources>
+    </StackPanel.Resources>
     <Border
         Name="OuterBorder"
         Width="Auto"
@@ -100,4 +100,4 @@
             </Grid>
         </StackPanel>
     </Border>
-</UserControl>
+</StackPanel>
