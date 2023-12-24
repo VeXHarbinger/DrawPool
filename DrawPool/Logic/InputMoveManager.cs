@@ -13,9 +13,9 @@ namespace DrawPool.Logic
         private bool _selected = false;
         private StackPanel _StackPanel;
 
-        public InputMoveManager(StackPanel player)
+        public InputMoveManager(StackPanel panel)
         {
-            _StackPanel = player;
+            _StackPanel = panel;
         }
 
         private void MouseInputOnLmbDown(object sender, EventArgs eventArgs)
@@ -35,14 +35,18 @@ namespace DrawPool.Logic
         private void MouseInputOnLmbUp(object sender, EventArgs eventArgs)
         {
             var pos = User32.GetMousePos();
-
             var _mousePos = new Point(pos.X, pos.Y);
             if (_selected)
             {
                 var p = Core.OverlayCanvas.PointFromScreen(new Point(pos.X, pos.Y));
-
-                Settings.Default.DrawPoolTop = p.Y;
-                Settings.Default.DrawPoolLeft = p.X;
+                if (pos.X > Core.OverlayCanvas.Width)
+                {
+                    Settings.Default.DrawPoolLeft = p.X;
+                }
+                if (pos.Y > Core.OverlayCanvas.Height)
+                {
+                    Settings.Default.DrawPoolTop = p.Y;
+                }
             }
 
             _selected = false;
@@ -57,9 +61,14 @@ namespace DrawPool.Logic
 
             var pos = User32.GetMousePos();
             var p = Core.OverlayCanvas.PointFromScreen(new Point(pos.X, pos.Y));
-
-            Canvas.SetTop(_StackPanel, p.Y);
-            Canvas.SetLeft(_StackPanel, p.X);
+            if (pos.X > Core.OverlayCanvas.Width)
+            {
+                Canvas.SetLeft(_StackPanel, p.X);
+            }
+            if (pos.Y > Core.OverlayCanvas.Height)
+            {
+                Canvas.SetTop(_StackPanel, p.Y);
+            }
         }
 
         private bool PointInsideControl(Point p, FrameworkElement control)

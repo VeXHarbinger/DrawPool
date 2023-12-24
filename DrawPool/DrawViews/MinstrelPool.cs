@@ -12,8 +12,8 @@
     /// <summary>
     /// The Minstrel DrawPool View
     /// </summary>
-    /// <seealso cref="DrawPool.Controls.PoolView" />
-    /// <seealso cref="DrawPool.DrawLogic.ICommonView" />
+    /// <seealso cref="global::DrawPool.Controls.PoolView" />
+    /// <seealso cref="global::DrawPool.DrawLogic.ICommonView" />
     public class MinstrelPool : PoolView, ICommonView
     {
         public MinstrelPool()
@@ -28,8 +28,8 @@
         /// </summary>
         public void DoMath()
         {
-            this.Chance1.Text = "0%";
-            this.Chance2.Text = "0%";
+            this.Chance1.Text = "";
+            this.Chance2.Text = "";
             if (MinionCount() >= 1)
             {
                 var gm = GroupedMinion();

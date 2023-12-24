@@ -9,7 +9,7 @@
     xmlns:props="clr-namespace:DrawPool.Properties"
     lex:LocalizeDictionary.DesignCulture="en"
     lex:ResxLocalizationProvider.DefaultAssembly="DrawPool"
-    lex:ResxLocalizationProvider.DefaultDictionary="DrawPoolStringTools"
+    lex:ResxLocalizationProvider.DefaultDictionary="DrawPool.Logic.StringTools"
     BorderThickness="1"
     VerticalScrollBarVisibility="Hidden"
     mc:Ignorable="d">

@@ -9,17 +9,15 @@ using Core = Hearthstone_Deck_Tracker.API.Core;
 
 namespace DrawPool
 {
-    public class PluginInstance : IDisposable
+    public class DrawPool : IDisposable
     {
         public static InputMoveManager inputMoveManager;
         public MinstrelPool minstrelPool;
 
-        public PluginInstance()
+        public DrawPool()
         {
             minstrelPool = new MinstrelPool();
             minstrelPool.Name = "MinstrelPoolView";
-           // minstrelPool.Height = minstrelPool.ActualHeight;
-          //  minstrelPool.Width = minstrelPool.ActualWidth;
             Core.OverlayCanvas.Children.Add(minstrelPool);
 
             Settings.Default.DrawPoolTop = CheckDefault(Settings.Default.DrawPoolTop);

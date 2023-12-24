@@ -1,7 +1,7 @@
 ﻿namespace DrawPool
 {
-    using DrawPool.DrawViews;
-    using DrawPool.Logic;
+
+    using global::DrawPool.Logic;
     using global::DrawPool.Controls;
     using Hearthstone_Deck_Tracker.Plugins;
     using System;
@@ -16,7 +16,7 @@
     /// <seealso cref="Hearthstone_Deck_Tracker.Plugins.IPlugin" />
     public class DrawPoolPlugin : IPlugin
     {
-        public PluginInstance pluginInstance;
+        public DrawPool drawPoolInstance;
 
         /// <summary>
         /// The author.
@@ -94,7 +94,7 @@
 
         public void OnLoad()
         {
-            pluginInstance = new PluginInstance();
+            drawPoolInstance = new DrawPool();
             AddMenuItem();
         }
 
@@ -105,8 +105,8 @@
         {
             Settings.Default.Save();
 
-            pluginInstance?.CleanUp();
-            pluginInstance = null;
+            drawPoolInstance?.CleanUp();
+            drawPoolInstance = null;
         }
 
         /// <summary>
