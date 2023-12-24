@@ -12,7 +12,7 @@ namespace DrawPool.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.5.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -50,48 +50,48 @@ namespace DrawPool.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public double Scale {
+        public double DrawPoolScale {
             get {
-                return ((double)(this["Scale"]));
+                return ((double)(this["DrawPoolScale"]));
             }
             set {
-                this["Scale"] = value;
+                this["DrawPoolScale"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public double Opacity {
+        public double DrawPoolOpacity {
             get {
-                return ((double)(this["Opacity"]));
+                return ((double)(this["DrawPoolOpacity"]));
             }
             set {
-                this["Opacity"] = value;
+                this["DrawPoolOpacity"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("400")]
-        public double Top {
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public double DrawPoolTop {
             get {
-                return ((double)(this["Top"]));
+                return ((double)(this["DrawPoolTop"]));
             }
             set {
-                this["Top"] = value;
+                this["DrawPoolTop"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("300")]
-        public double Left {
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public double DrawPoolLeft {
             get {
-                return ((double)(this["Left"]));
+                return ((double)(this["DrawPoolLeft"]));
             }
             set {
-                this["Left"] = value;
+                this["DrawPoolLeft"] = value;
             }
         }
     }

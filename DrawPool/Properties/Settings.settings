@@ -8,17 +8,17 @@
     <Setting Name="IsPiperEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="Scale" Type="System.Double" Scope="User">
+    <Setting Name="DrawPoolScale" Type="System.Double" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
-    <Setting Name="Opacity" Type="System.Double" Scope="User">
+    <Setting Name="DrawPoolOpacity" Type="System.Double" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
-    <Setting Name="Top" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">400</Value>
+    <Setting Name="DrawPoolTop" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">10</Value>
     </Setting>
-    <Setting Name="Left" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">300</Value>
+    <Setting Name="DrawPoolLeft" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">10</Value>
     </Setting>
   </Settings>
 </SettingsFile>
