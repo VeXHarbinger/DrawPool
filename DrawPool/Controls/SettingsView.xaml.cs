@@ -1,7 +1,7 @@
 ﻿namespace DrawPool.Controls
 {
-    using DrawPool.DrawLogic;
-    using DrawPool.Logic;
+    using global::DrawPool.DrawLogic;
+    using global::DrawPool.Logic;
     using MahApps.Metro.Controls;
     using System;
     using System.Collections.Generic;
@@ -67,7 +67,7 @@
 
         private void BtnUnlock_Click(object sender, RoutedEventArgs e)
         {
-            IsUnlocked = PluginInstance.inputMoveManager.Toggle();
+            IsUnlocked = DrawPool.inputMoveManager.Toggle();
             if (!IsUnlocked)
             {
                 BtnUnlock.Content = StringTools.GetLocalized("UnlockLabel");

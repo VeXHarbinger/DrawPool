@@ -83,7 +83,7 @@
                         Width="35"
                         Height="20"
                         FontSize="12"
-                        Text="0%"
+                        Text=""
                         TextAlignment="Right" />
                     <hdt:HearthstoneTextBlock
                         x:Name="LblDrawChance2"
@@ -94,7 +94,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         FontSize="12"
-                        Text="0%"
+                        Text=""
                         TextAlignment="Right" />
                 </Canvas>
             </Grid>
