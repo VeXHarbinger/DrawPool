@@ -18,6 +18,7 @@ namespace DrawPool
         {
             minstrelPool = new MinstrelPool();
             minstrelPool.Name = "MinstrelPoolView";
+            minstrelPool.Visibility = System.Windows.Visibility.Collapsed;
             Core.OverlayCanvas.Children.Add(minstrelPool);
 
             Settings.Default.DrawPoolTop = CheckDefault(Settings.Default.DrawPoolTop);
