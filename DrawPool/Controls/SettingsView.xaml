@@ -11,6 +11,7 @@
     lex:ResxLocalizationProvider.DefaultAssembly="DrawPool"
     lex:ResxLocalizationProvider.DefaultDictionary="DrawPool.Logic.StringTools"
     BorderThickness="1"
+    HorizontalScrollBarVisibility="Hidden"
     VerticalScrollBarVisibility="Hidden"
     mc:Ignorable="d">
     <StackPanel

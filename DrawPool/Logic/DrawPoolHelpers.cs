@@ -15,7 +15,6 @@
         /// <returns>The scoped list of <see cref="Card">Cards</see></returns>
         public static List<Card> BuildQueryDeck()
         {
-
             var pd = Hearthstone_Deck_Tracker.API.Core.Game.Player.PlayerCardList.ToList<Card>();
 
             pd = pd.FixCreatedCards();

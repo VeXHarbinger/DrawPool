@@ -51,33 +51,36 @@
         private void BtnShowHide_Click(object sender, RoutedEventArgs e)
         {
             MinstrelPool poolView = Core.OverlayCanvas.FindChild<MinstrelPool>("MinstrelPoolView");
-            bool wasVisible = poolView.PoolIsVisibile() || false;
-
-            if (wasVisible)
+            if (poolView != null)
             {
-                BtnShowHide.Content = StringTools.GetLocalized("ShowLabel");
-                poolView.Hide();
-            }
-            else
-            {
-                BtnShowHide.Content = StringTools.GetLocalized("HideLabel");
-                poolView.Show();
+                if (poolView.Visibility == Visibility.Visible)
+                {
+                    BtnShowHide.Content = StringTools.GetLocalized("ShowLabel");
+                    poolView.Hide();
+                }
+                else
+                {
+                    BtnShowHide.Content = StringTools.GetLocalized("HideLabel");
+                    poolView.Show();
+                }
             }
         }
 
         private void BtnUnlock_Click(object sender, RoutedEventArgs e)
         {
-            IsUnlocked = DrawPool.inputMoveManager.Toggle();
-            if (!IsUnlocked)
+            MinstrelPool poolView = Core.OverlayCanvas.FindChild<MinstrelPool>("MinstrelPoolView");
+            if (poolView != null)
             {
-                BtnUnlock.Content = StringTools.GetLocalized("UnlockLabel");
-                BtnShowHide.IsEnabled = true;
-            }
-            else
-            {
-                BtnUnlock.Content = StringTools.GetLocalized("LockLabel");
-                BtnShowHide.Content = StringTools.GetLocalized("HideLabel");
-                BtnShowHide.IsEnabled = false;
+                IsUnlocked = DrawPool.inputMoveManager.Toggle();
+
+                BtnShowHide.IsEnabled = !IsUnlocked;
+                BtnUnlock.Content = IsUnlocked ? StringTools.GetLocalized("LockLabel") : BtnUnlock.Content = StringTools.GetLocalized("UnlockLabel");
+
+                if (IsUnlocked && (poolView.Visibility != Visibility.Visible))
+                {
+                    poolView.Show();
+                    BtnShowHide.Content = StringTools.GetLocalized("HideLabel");
+                }
             }
         }
 
@@ -85,8 +88,6 @@
         {
             BtnUnlock.Content = StringTools.GetLocalized("UnlockLabel");
             BtnShowHide.Content = StringTools.GetLocalized("ShowLabel");
-
-            //MinstrelToggleSwitch MinstrelLabel
         }
     }
 }
