@@ -53,16 +53,9 @@
             MinstrelPool poolView = Core.OverlayCanvas.FindChild<MinstrelPool>("MinstrelPoolView");
             if (poolView != null)
             {
-                if (poolView.Visibility == Visibility.Visible)
-                {
-                    BtnShowHide.Content = StringTools.GetLocalized("ShowLabel");
-                    poolView.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    BtnShowHide.Content = StringTools.GetLocalized("HideLabel");
-                    poolView.Visibility = Visibility.Visible;
-                }
+                bool IsVis = (poolView.Visibility == Visibility.Visible);
+                BtnShowHide.Content = IsVis ? StringTools.GetLocalized("HideLabel") : StringTools.GetLocalized("ShowLabel");
+                poolView.Visibility = IsVis ? Visibility.Collapsed : Visibility.Visible;
             }
         }
 
@@ -77,16 +70,10 @@
 
                 if (IsUnlocked && (poolView.Visibility != Visibility.Visible))
                 {
-                    poolView.Show();
+                    poolView.Visibility = Visibility.Visible;
                     BtnShowHide.Content = StringTools.GetLocalized("HideLabel");
                 }
             }
-        }
-
-        private void Translate(Flyout settings)
-        {
-            BtnUnlock.Content = StringTools.GetLocalized("UnlockLabel");
-            BtnShowHide.Content = StringTools.GetLocalized("ShowLabel");
         }
     }
 }
