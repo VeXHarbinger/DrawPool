@@ -6,26 +6,16 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Windows;
     using System.Windows.Controls;
     using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
     using Core = Hearthstone_Deck_Tracker.API.Core;
 
     public partial class PoolView : StackPanel
     {
-        private User32.MouseInput _mouseInput;
-
         /// <summary>
         /// The deck hash reference
         /// </summary>
         private int deckHash;
-
-        /// <summary>
-        /// Indicates if the window is movable or pined
-        /// </summary>
-        private bool isDraggable = false;
-
-        internal Point mousePosition;
 
         /// <summary>
         /// The list of <see cref="Card">Cards</see>
@@ -100,7 +90,6 @@
         /// <returns>The Draw probability.</returns>
         public Double DrawProbability(int poolsize, int copies = 1, int draw = 1, int dec = 1)
         {
-            //double dp = Helper.DrawProbability(copies, poolsize, draw);
             return Math.Round(Helper.DrawProbability(copies, poolsize, draw) * 100, dec);
         }
 
@@ -113,33 +102,12 @@
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this window instance is draggable.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if window instance is draggable; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsPoolWindowDraggable() => isDraggable;
-
-        /// <summary>
         /// Called when the mouse focus moves off the card.
         /// </summary>
         public void OnMouseOff()
         {
             Hide();
         }
-
-        public void Pin()
-        {
-            isDraggable = false;
-        }
-
-        /// <summary>
-        /// Indicates if the Pool is visibile.
-        /// </summary>
-        /// <returns>
-        /// <c>true</c> if it is Visible;otherwise, <c>false</c>.
-        /// </returns>
-        public bool PoolIsVisibile() => (base.Visibility == System.Windows.Visibility.Visible);
 
         public void SetTitle()
         {
@@ -152,12 +120,6 @@
         public void Show()
         {
             this.Visibility = System.Windows.Visibility.Visible;
-        }
-
-        public void UnPin()
-        {
-            isDraggable = true;
-            Show();
         }
 
         public bool Update(Card card)
@@ -178,36 +140,7 @@
                 Cards.Add(card.Clone() as Card);
             }
 
-            //Label.Visibility = Visibility.Visible;
-
             return true;
-        }
-
-        public void UpdatePosition()
-        {
-            /* OLD CODE; positions near top of screen
-            Canvas.SetTop(this, Core.OverlayCanvas.Height * 3 / 100);
-            var xPos = Hearthstone_Deck_Tracker.Helper.GetScaledXPos(8.0 / 100, (int)Core.OverlayCanvas.Width, ScreenRatio);
-
-            if (isLocal)
-            {
-                Canvas.SetRight(this, xPos);
-            }
-            else
-            {
-                Canvas.SetLeft(this, xPos);
-            }
-            */
-
-            // Canvas.SetRight(this, Hearthstone_Deck_Tracker.Helper.GetScaledXPos(5.0 / 100, (int)Core.OverlayCanvas.Width, ScreenRatio));
-            if (true)
-            {
-                //   Canvas.SetTop(this, Core.OverlayCanvas.Height * 65 / 100);
-            }
-            else
-            {
-                //  Canvas.SetBottom(this, Core.OverlayCanvas.Height * 75 / 100);
-            }
         }
     }
 }

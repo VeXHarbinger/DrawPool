@@ -1,13 +1,12 @@
 ﻿namespace DrawPool
 {
+    using global::DrawPool.Controls;
 
     using global::DrawPool.Logic;
-    using global::DrawPool.Controls;
     using Hearthstone_Deck_Tracker.Plugins;
     using System;
     using System.Reflection;
     using System.Windows.Controls;
-    using System.Windows.Input;
     using Settings = Properties.Settings;
 
     /// <summary>
@@ -49,9 +48,9 @@
         public string Name => StringTools.GetLocalized("PluginName");
 
         /// <summary>
-        /// The plugin version.
+        /// The plug-in version.
         /// </summary>
-        /// <value>The plugin version.</value>
+        /// <value>The plug-in version.</value>
         public Version Version => Assembly.GetExecutingAssembly().GetName().Version;
 
         /// <summary>

@@ -5,7 +5,7 @@ namespace DrawPool.Logic
     /// <summary>
     /// General String manipulation Tools
     /// </summary>
-    public  class StringTools
+    public class StringTools
     {
         /// <summary>
         /// Gets the localized version of the given string.

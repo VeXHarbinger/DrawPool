@@ -36,15 +36,15 @@
                 // Next, figure out our odds
                 this.Chance1.Text = WriteDrawProbability(
                     gm.First<IGrouping<int, Card>>().
-                    First<Card>().Count, 
-                    MinionCount(), 
+                    First<Card>().Count,
+                    MinionCount(),
                     2
                 );
                 if (gm.Count >= 2)
                 {
                     this.Chance2.Text = WriteDrawProbability(
-                        gm[1].First<Card>().Count, 
-                        MinionCount(), 
+                        gm[1].First<Card>().Count,
+                        MinionCount(),
                         2);
                 }
             }

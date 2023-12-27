@@ -21,8 +21,6 @@ namespace DrawPool
             minstrelPool.Visibility = System.Windows.Visibility.Collapsed;
             Core.OverlayCanvas.Children.Add(minstrelPool);
 
-            Settings.Default.DrawPoolTop = CheckDefault(Settings.Default.DrawPoolTop);
-            Settings.Default.DrawPoolLeft = CheckDefault(Settings.Default.DrawPoolLeft);
             Canvas.SetTop(minstrelPool, Settings.Default.DrawPoolTop);
             Canvas.SetLeft(minstrelPool, Settings.Default.DrawPoolLeft);
 
@@ -34,11 +32,6 @@ namespace DrawPool
             GameEvents.OnGameStart.Add(GameTypeCheck);
             GameEvents.OnGameEnd.Add(CleanUp);
         }
-
-        private double CheckDefault(double n) {
-            return n > 0 ? n : n * -1;
-        }
-
 
         private void GameTypeCheck()
         {
@@ -56,7 +49,7 @@ namespace DrawPool
         }
 
         private void SettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {            
+        {
             minstrelPool.RenderTransform = new ScaleTransform(Settings.Default.DrawPoolScale / 100, Settings.Default.DrawPoolScale / 100);
             minstrelPool.Opacity = Settings.Default.DrawPoolOpacity / 100;
         }
